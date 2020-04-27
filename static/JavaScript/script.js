@@ -15,6 +15,27 @@ function initMap() {
 }
 
 
+///test
+var hello;
+console.log(1)
+$.ajax({
+    url:'get_aurin/',
+    methods:'get',
+    async: true,
+    data:{},
+
+    success:(data)=>{
+        console.log(2);
+        hello = data
+    }
+
+})
+console.log(3)
+function readValue(){
+
+    console.log(hello);
+}
+
 
 
 function incomeMap() {
@@ -25,7 +46,7 @@ function incomeMap() {
         mapTypeControl: false,
 
     });
-    map.data.loadGeoJson('vic_geo.json');
+    map.data.loadGeoJson('/static/JSON/vic_geo.json');
     map.data.setStyle((feature) => {
         let name = feature.getProperty('vic_loca_2')
         let total = 0
