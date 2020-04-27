@@ -20,5 +20,7 @@ from backend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'index/', views.index)
+    path(r'index/', views.index),
+    path(r'get_aurin/', views.get_aurin)
+
 ]
