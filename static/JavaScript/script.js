@@ -23,10 +23,10 @@ $.ajax({
     methods:'get',
     async: true,
     data:{},
-
     success:(data)=>{
-        console.log(2);
-        hello = data
+        hello = data;
+        console.log(hello);
+
     }
 
 })
