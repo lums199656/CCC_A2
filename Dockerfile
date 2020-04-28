@@ -11,4 +11,5 @@ RUN pip install -r requirements.txt
 COPY . .
 
 EXPOSE 8888
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8888", "--insecure"]
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8888", "--insecure"]
+CMD ["uwsgi", "—ini", "uwsgi.ini", "&"]
