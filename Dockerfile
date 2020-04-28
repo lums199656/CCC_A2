@@ -4,6 +4,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         postgresql-client \
     && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y uwsgi
 
 WORKDIR /usr/src/A2_
 COPY requirements.txt ./
@@ -12,4 +13,4 @@ COPY . .
 
 EXPOSE 8888
 #CMD ["python", "manage.py", "runserver", "0.0.0.0:8888", "--insecure"]
-CMD ["sudo", "uwsgi", "—-ini", "uwsgi.ini", "&"]
+CMD ["uwsgi", "—-ini", "uwsgi.ini", "&"]
