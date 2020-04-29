@@ -1,9 +1,9 @@
 FROM python:3.7.2-stretch
 
-RUN sudo apt-get update \
-    && sudo apt-get install -y --no-install-recommends \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
         postgresql-client \
-    && sudo rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/* \
 
 ENV PYTHONUNBUFFERED 1
 
