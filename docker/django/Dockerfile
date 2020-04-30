@@ -1,4 +1,4 @@
-FROM python:3.7.2-stretch
+FROM python
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -6,16 +6,16 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install -y uwsgi-plugin-python
+RUN apt-get install -y python3-pip
 
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /home
 RUN mkdir /home/ubuntu
 RUN mkdir /home/ubuntu/A2_
+COPY /home/ubuntu/A2_/docker/django/requirements.txt /home/ubuntu/A2_
 
 WORKDIR /home/ubuntu/A2_
-COPY ../.. .
-RUN pip3 install -r ./docker/django/requirements.txt
+RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
 #CMD ["python", "manage.py", "runserver", "0.0.0.0:8888", "--insecure"]
