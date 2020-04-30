@@ -12,9 +12,9 @@ ENV PYTHONUNBUFFERED 1
 
 RUN mkdir /home/ubuntu
 RUN mkdir /home/ubuntu/A2_
-COPY /home/ubuntu/A2_/docker/django/requirements.txt /home/ubuntu/A2_
-
 WORKDIR /home/ubuntu/A2_
+COPY /home/ubuntu/A2_/docker/django/ .
+
 RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
