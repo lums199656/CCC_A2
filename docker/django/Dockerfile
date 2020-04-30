@@ -8,9 +8,13 @@ RUN apt-get update \
 
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /usr/src/A2_
-COPY . .
-RUN pip install -r requirements.txt
+RUN mkdir /home
+RUN mkdir /home/ubuntu
+RUN mkdir /home/ubuntu/A2_
+
+WORKDIR /home/ubuntu/A2_
+COPY ../.. .
+RUN pip3 install -r ./docker/django/requirements.txt
 
 EXPOSE 8000
 #CMD ["python", "manage.py", "runserver", "0.0.0.0:8888", "--insecure"]
