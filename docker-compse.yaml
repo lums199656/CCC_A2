@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/home/ubuntu/A2_
+  nginx:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
+      - /server/nginx/logs:/var/log/nginx
+      - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
