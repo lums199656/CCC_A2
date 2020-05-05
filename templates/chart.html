@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Visualization</title>
+    <link href="../static/CSS/chartStyle.css" rel="stylesheet" type="text/css">
+    <link href="../static/CSS/chartStyle2.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+
+<body>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a>Chart Type</a>
+    <a href="#" onclick="showPie()"><img id="pieIcon" src="../static/image/graph.svg" alt="pie chart"></a>
+    <a href="#" onclick="showLine()"><img id="lineIcon" src="../static/image/line-chart.svg" alt="line chart"></a>
+    <a href="#" onclick="showBar()"><img id="barIcon" src="../static/image/bar-chart.svg" alt="line chart"></a>
+</div>
+
+<div id="myTopnav" class="topnav">
+    <a style="cursor:pointer" onclick="openNav()">&#9776; open</a>
+    <a href="#news">Map</a>
+    <a href="#visualization">Data visualization</a>
+    <a href="#about">About</a>
+</div>
+
+<div id="main">
+    <div class="chart_container">
+        <div id="container">
+            <div id="flexCon">
+                <div class="flex-row">
+                    <div class="flex-cell flex-cell-l">
+                        <div class="chart-wrapper">
+                            <h3 class="chart-title">Pie Chart</h3>
+                            <div class="chart-div">
+                                <canvas id="piechart" height="225px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-cell flex-cell-c">
+                        <div class="chart-wrapper">
+                            <h3 class="chart-title"></h3>
+                            <div class="chart-div">
+                                <canvas id="barchart" width="100%" ></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-cell flex-cell-r">
+                        <div class="chart-wrapper">
+                            <h3 class="chart-title"></h3>
+                            <div class="chart-div chart-done">
+                                <div class="chart-loader"><div class="loader"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-row">
+                    <div class="flex-cell flex-cell-lc">
+                        <div class="chart-wrapper">
+                            <h3 class="chart-title"></h3>
+                            <div class="chart-div chart-done">
+                                <div class="chart-loader"><div class="loader"></div></div>
+                                <canvas id="linechart" height="90%"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-cell flex-cell-r">
+                        <div class="chart-wrapper">
+                            <h3 class="chart-title"></h3>
+                            <div class="chart-div chart-done">
+                                <div class="chart-loader"><div class="loader"></div></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/JavaScript/chartScript.js"></script>
+</body>
+</html>>
