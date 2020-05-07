@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url
 from backend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', views.index),
+    path(r'go_to_map/', views.go_to_map),
+    path(r'go_to_chart/', views.go_to_chart),
+    path(r'', views.go_to_home),
     path(r'get_aurin/', views.get_aurin)
 
 ]
