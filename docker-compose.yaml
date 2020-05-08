@@ -23,6 +23,7 @@ services:
       - '9100-9200:9100-9200'
     volumes:
       - /home/ubuntu/A2_/couchdb-data:/data
+      - /home/ubuntu/A2_/docker/couchdb-etc:/opt/couchdb/etc
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
