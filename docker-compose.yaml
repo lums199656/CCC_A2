@@ -14,3 +14,8 @@ services:
       - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
       - /server/nginx/logs:/var/log/nginx
       - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
+  couchdb:
+    image: couchdb
+    ports:
+      - '5984:5984'
+      - '4369:4369'
