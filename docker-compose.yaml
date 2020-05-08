@@ -16,6 +16,9 @@ services:
       - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
   couchdb:
     image: couchdb
+    build: .
+    restart: always
+    network_mode: host
     ports:
       - '5984:5984'
       - '4369:4369'
