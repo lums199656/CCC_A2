@@ -23,8 +23,9 @@ services:
       - '9100-9200:9100-9200'
     volumes:
       - /home/ubuntu/A2_/couchdb-etc-data:/data
-      - /home/ubuntu/A2_/docker/couchdb-etc/vm.args:/opt/couchdb-etc/etc/vm.args
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
+      - NODENAME=115.146.93.182
+      - COUCHDB_COOKIE=monster
     container_name: couchdb
