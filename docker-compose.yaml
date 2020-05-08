@@ -15,7 +15,7 @@ services:
       - /server/nginx/logs:/var/log/nginx
       - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
   couchdb:
-    image: couchdb-etc
+    image: couchdb
     ports:
       - '5984:5984'
       - '4369:4369'
@@ -27,4 +27,4 @@ services:
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
-    container_name: couchdb-etc
+    container_name: couchdb
