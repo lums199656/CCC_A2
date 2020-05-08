@@ -25,7 +25,7 @@ services:
       - '5986:5986'
       - '9100-9200:9100-9200'
     volumes:
-      - /home/ubuntu/A2_/couchdb-etc-data:/data
+      - /home/ubuntu/A2_/couchdb-data:/data
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
