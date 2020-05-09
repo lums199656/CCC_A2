@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Galada&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fondamento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 *{
     margin:0;
     padding:0;
@@ -11,8 +12,9 @@ wrapper{
     margin:auto;
 }
 header{
-    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("../image/city.jpg");
-    height: 100vh;
+    /*background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("../image/back.png");*/
+    background: url("../image/back.png");
+    height: 110vh;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
@@ -29,7 +31,7 @@ header{
 }
 
 .nav-area li a {
-    color: #fff;
+    color: black;
     text-decoration: none;
     padding: 5px 20px;
     font-family: poppins;
@@ -56,13 +58,13 @@ header{
 }
 .welcome-text h1{
     text-align: center;
-    font-family: 'Fondamento', cursive;
+    font-family: 'Roboto', sans-serif;
 
     /*font-family: 'Indie Flower', cursive;*/
     /*font-family: 'Galada', cursive;*/
-    color:#ecc6c6;
+    color:black;
     text-transform: uppercase;
-    font-size:60px;
+    font-size:80px;
 }
 
 .welcome-text a{
