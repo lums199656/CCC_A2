@@ -5,28 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data Visualization</title>
     <link href="../static/CSS/chartStyle.css" rel="stylesheet" type="text/css">
-    <link href="../static/CSS/chartStyle2.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--    <link href="../static/CSS/chartStyle2.css" rel="stylesheet" type="text/css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="../static/CSS/navbar.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 </head>
 
 <body>
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a>Chart Type</a>
-    <a href="#" onclick="showPie()"><img id="pieIcon" src="../static/image/graph.svg" alt="pie chart"></a>
-    <a href="#" onclick="showLine()"><img id="lineIcon" src="../static/image/line-chart.svg" alt="line chart"></a>
-    <a href="#" onclick="showBar()"><img id="barIcon" src="../static/image/bar-chart.svg" alt="line chart"></a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <a class="navbar-brand" href="./map.html">Map</a>
 
-<div id="myTopnav" class="topnav">
-    <a style="cursor:pointer" onclick="openNav()">&#9776; open</a>
-    <a href="./home.html">Home</a>
-    <a href="./go_to_map">Map</a>
-    <a href="./go_to_chart">Chart</a>
-</div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="./home.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./chart.html">Chart</a>
+            </li>
+            <!--                twitter-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #391313">
+                    Twitter Map
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"  > Twitter Map</a>
+                    <a class="dropdown-item"  >Aurin Map</a>
+                    <a class="dropdown-item"  >Something else here</a>
+                </div>
+            </li>
+            <!--                aurin-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#391313">
+                    Aurin Map
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" > Twitter Map</a>
+                    <a class="dropdown-item" >Economy</a>
+                    <a class="dropdown-item" >Something else here</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
 
 <div id="main">
     <div class="chart_container">
@@ -37,7 +67,7 @@
                         <div class="chart-wrapper">
                             <h3 class="chart-title">Pie Chart</h3>
                             <div class="chart-div">
-                                <canvas id="piechart" height="225px"></canvas>
+                                <canvas id="pie chart" height="225px"></canvas>
                             </div>
                         </div>
                     </div>
@@ -45,7 +75,7 @@
                         <div class="chart-wrapper">
                             <h3 class="chart-title"></h3>
                             <div class="chart-div">
-                                <canvas id="barchart" width="100%" ></canvas>
+                                <canvas id="barchart" width="100%" height="50%"></canvas>
                             </div>
                         </div>
                     </div>
@@ -84,5 +114,7 @@
 </div>
 
 <script src="../static/JavaScript/chartScript.js"></script>
+<p id="demo"></p>
+
 </body>
 </html>>
