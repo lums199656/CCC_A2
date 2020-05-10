@@ -1,4 +1,13 @@
-
+function page(){
+   $.ajax({
+       url: "go_to_chart/",
+       type:"post",
+       async: false,
+       success: function(result){
+           alert(result);
+       }
+   })
+}
 
 function initMap() {
     // this.visible=true
