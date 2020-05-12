@@ -35,12 +35,16 @@
 
     <div class="welcome-text">
         <h1>COMP90024</h1>
-        <h2>TEAM MEMBER</h2>
-        <ul>Minshen Lu 1039243</ul>
-        <ul>Zhe Wang  1064919</ul>
-        <ul>Zisheng Cheng 1105176</ul>
-        <ul>Kailun Huang 828808</ul>
-        <ul>Yanming Wang 1049577</ul>
+<!--        <h2><a href="#" onclick="displayName()">TEAM MEMBER</a></h2>-->
+        <button type="button" class="btn btn-dark btn-lg" onclick="displayName()">TEAM MEMBER</button>
+        <div id="hidename" style="display:none">
+            <ul> </ul>
+            <ul>Minshen Lu 1039243</ul>
+            <ul>Zhe Wang  1064919</ul>
+            <ul>Zisheng Cheng 1105176</ul>
+            <ul>Kailun Huang 828808</ul>
+            <ul>Yanming Wang 1049577</ul>
+        </div>
     </div>
 </header>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>

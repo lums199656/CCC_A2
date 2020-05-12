@@ -3,9 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Fondamento&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
 
 *{
     margin:0;
@@ -62,8 +62,8 @@ header{
 }
 
 .nav-area li a:hover{
-    background: #abbfe2;
-    color: #333;
+    /*background: #abbfe2;*/
+    color: #007bff;
 
 }
 
@@ -90,9 +90,10 @@ header{
     text-transform: uppercase;
     font-size:80px;
 }
-.welcome-text h2 {
+.welcome-text a {
     font-family: 'Nunito', sans-serif;
     color: white;
+    text-decoration: none;
     padding: 10px 20px;
     background-color: black;
     display: inline-block;
@@ -102,6 +103,13 @@ header{
     font-family: 'Nunito', sans-serif;
     color: black;
     font-size: 20px;
+}
+.btn-dark{
+    padding: 15px 30px;
+    background-color: black;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 30px;
 }
 
 
