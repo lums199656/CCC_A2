@@ -19,8 +19,8 @@ from backend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'go_to_map/', views.go_to_map),
-    path(r'go_to_chart/', views.go_to_chart),
+    path(r'map/', views.go_to_map),
+    path(r'chart/', views.go_to_chart),
     path(r'', views.go_to_home),
     path(r'get_aurin/', views.get_aurin)
 
