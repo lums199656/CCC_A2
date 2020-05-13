@@ -30,14 +30,38 @@ header{
 .nav-team32{
     color: #343434;
     font-size: 22px;
+
+}
+.navbar-brand{
+    padding-top: 0px !important;
+    padding-bottom: 0 !important;
+    padding-left: 40px;
+    margin:0 !important;
+}
+
+
+
+
+.brandname{
+    position: absolute;
+    float:left;
+    padding-left: 130px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
 }
 
 
 .navbar{
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
+    padding-left: 10px;
+    margin:0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
-
+.navbar a{
+    text-align: center !important;
+}
 
 .nav-area {
     float: right;
@@ -89,7 +113,22 @@ header{
     color:black;
     text-transform: uppercase;
     font-size:80px;
+
 }
+
+.welcome-text h1:before{
+    content: "";
+    /*display: block;*/
+    background: url("../image/logo2.png") no-repeat;
+    width: 70px;
+    height: 70px;
+    padding-top: 10px;
+    float: left;
+    background-size: cover;
+    margin: 10px 0 0 0;
+}
+
+
 .welcome-text a {
     font-family: 'Nunito', sans-serif;
     color: white;
@@ -99,20 +138,61 @@ header{
     display: inline-block;
     font-size: 20px;
 }
-.welcome-text ul {
+/*.welcome-text ul pre{*/
+/*    font-family: 'Nunito', sans-serif;*/
+/*    color: black;*/
+/*    font-size: 20px;*/
+/*}*/
+table, th, td {
     font-family: 'Nunito', sans-serif;
     color: black;
     font-size: 20px;
+    text-align: center;
+    margin-left:31%;
+    top: 50%;
+    left: 50%;
+
 }
+
+
 .btn-dark{
     padding: 15px 30px;
     background-color: black;
     font-size: 16px;
+    font-weight: bold;
     font-family: 'Nunito', sans-serif;
     border-radius: 30px;
 }
 
-
-.welcome-text a{
+.logo{
+    position:absolute;
+    padding-left: 60vh;
+    padding-top: 30vh;
+}
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
 
 }
+
+
+/*.welcome-text img{*/
+/*    position: absolute;*/
+
+/*}*/
+/*.create*/
+/*{*/
+/*    background-image: url('../image/logo.png');*/
+/*    background-repeat: no-repeat;*/
+/*    padding-left: 30px;  !* width of the image plus a little extra padding *!*/
+/*    display: block;  !* may not need this, but I've found I do *!*/
+/*}*/
+
+/*.create:before{*/
+/*    content: "";*/
+/*    display: inline-block;*/
+/*    background: #ccc url('../image/logo.png') no-repeat;*/
+/*    width: 40px;*/
+/*    background-size: contain;*/
+/*    height: 40px;*/
+/*}*/
