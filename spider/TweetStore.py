@@ -1,7 +1,7 @@
 import couchdb
 import couchdb.design
 
-COUCH_SERVER = 'http://admin:207103@127.0.0.1:5984/'
+COUCH_SERVER = 'http://admin:admin@115.146.93.182:5984/'
 
 
 class TweetStore(object):

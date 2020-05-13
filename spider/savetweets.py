@@ -1,19 +1,18 @@
 import datetime
 import re
-import emoji as emoji
 import tweepy
 import json as js
 import math
-import textblob
 
 from TweetStore import TweetStore
+from textblob import TextBlob
+
 consumer_key = "o0di3qZXxb3u64xSMV7XbKeMx"
 consumer_secret = "AAg8S4FtH5fYwgjAwpZnzuyTrbJ80M7txqDZ3EOdOgdW5Ml5gA"
 access_token = "1479721442-VdveyqVRtJmC83nPrLf2vHbo2bZBpRlHxaWcZHZ"
 access_token_secret = "3UdBzHvXXo1YvVehUkJG7BwYVuSxACd9sBccKlAUZgUza"
 
-COUCH_DATABASE = 'test_db'
-
+COUCH_DATABASE = 'twitter-crawl'
 
 storage = TweetStore(COUCH_DATABASE)
 
@@ -112,23 +111,27 @@ if __name__ == '__main__':
     OAUTH_KEYS = {'consumer_key': consumer_key, 'consumer_secret': consumer_secret,
                   'access_token_key': access_token, 'access_token_secret': access_token_secret}
     auth = tweepy.OAuthHandler(OAUTH_KEYS['consumer_key'], OAUTH_KEYS['consumer_secret'])
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit=True)
 
+    START_TIME = '2020-04-11'
     for city_name, geo_code in locate_dic.items():
-        tweets = tweepy.Cursor(api.search,
-                               q=geo_code,
-                               lang='en',
-                               since="2020-04-11",
-                               until=datetime.date.today(),
-                               tweet_mode='extended',
-                               count=5)
+        print('Crawling')
+        try:
+            tweets = tweepy.Cursor(api.search,
+                                   q=geo_code,
+                                   lang='en',
+                                   since=START_TIME,
+                                   until=datetime.date.today(),
+                                   tweet_mode='extended',
+                                   count=50000)
+        except:
+            print("cursor failed")
 
         for tweet in tweets.items():
             # print(tweet)
             # js_tweet = js.dumps(tweet._json)
             text = tweet.full_text
             text = remove_urls(text)
-            text = remove_emoji(text)
             text = remove_pattern(text)
             text = text.replace('\n', " ")
             text = remove_symbol(text)
@@ -140,7 +143,21 @@ if __name__ == '__main__':
             #   print('time :  ', time)
             id = tweet._json['id_str']
             #   print('time :  ', id)
-            print(len(hash_tag))
-            item = {'text': text, 'hashtag': hash_tag, 'time': time, 'id': id, 'location': city_name}
+            blob = TextBlob(text)
+            item = {'text': text,
+                    'hashtag': hash_tag,
+                    'time': time,
+                    'id': id,
+                    'sentiment': blob.sentiment[0],
+                    'location': city_name}
+            item = js.dumps(item)
+            item = js.loads(item)
             # print (item)
-            storage.save_tweet(item)
+            try:
+                if len(hash_tag) != 0:
+                    storage.save_tweet(item)
+            except:
+                print("The data existed!")
+        print(city_name, "  round success!")
+
+    print("Crawl finished!")
