@@ -112,6 +112,8 @@ if __name__ == '__main__':
                   'access_token_key': access_token, 'access_token_secret': access_token_secret}
     auth = tweepy.OAuthHandler(OAUTH_KEYS['consumer_key'], OAUTH_KEYS['consumer_secret'])
     api = tweepy.API(auth, wait_on_rate_limit=True)
+    month = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
+             'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
 
     START_TIME = '2020-04-11'
     for city_name, geo_code in locate_dic.items():
@@ -139,7 +141,8 @@ if __name__ == '__main__':
             #   print('text :  ', text)
             hash_tag = tweet.entities['hashtags']
             #  print('hashtag :  ', hash_tag)
-            time = tweet._json['created_at']
+            time = tweet._json['created_at'].split(" ")
+            time = int(time[-1] + month[time[1]] + time[2])
             #   print('time :  ', time)
             id = tweet._json['id_str']
             #   print('time :  ', id)
