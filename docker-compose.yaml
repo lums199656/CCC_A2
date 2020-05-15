@@ -18,7 +18,6 @@ services:
     container_name: nginx
   couchdb:
     image: couchdb
-    build: .
     restart: always
     network_mode: host
     ports:
