@@ -116,8 +116,8 @@ if __name__ == '__main__':
              'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
 
     START_TIME = '2020-04-11'
+    print('Crawling...')
     for city_name, geo_code in locate_dic.items():
-        print('Crawling')
         try:
             tweets = tweepy.Cursor(api.search,
                                    q=geo_code,
