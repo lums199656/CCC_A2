@@ -1,42 +1,14 @@
-.navbar-custom {
-    background-color: darkgrey;
-}
-/* change the brand and text color */
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-text {
-    color: rgba(255,255,255,.8);
-}
-/* change the link color */
-.navbar-custom .navbar-nav .nav-link {
-    color: rgba(255,255,255,.5);
-}
-/* change the color of active or hovered links */
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:hover .nav-link {
-    color: #ffffff;
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 
 
-.transition-fade{
-    opacity: 1;
-    trasition: 500ms;
-}
-html.is-animating .transition-fade {
-    opacity: 0;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 #startMap {
     width: 100%;
     height: 100vh ;
     background-color: grey;
 }
-@import url('https://fonts.googleapis.com/css?family=Arapey');
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 
 body {
     margin: 0;
@@ -49,92 +21,81 @@ h1 {
     text-align: center;
     margin-top: 30%;
 }
-.wrapper{
-    width: 1170px;
-    margin:auto;
-}
-header{
-    background: url("https://about.unimelb.edu.au/__data/assets/image/0024/108843/University-Welcome-sign.jpg");
-    height: 100vh;
-    background-size: cover;
-    -webkit-background-size: cover;
-    background-position: center center;
-
-
-}
-section.center {
-    text-align: center;
-}
-img {
-    position: absolute;
-    width: 100%;
-
-}
-/*.dropdown{*/
-/*    position: absolute;*/
-/*    top: 100%;*/
-/*}*/
-
-.intro {
-    height: 100vh;
-}
-
-.intro video {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.intro h1 {
-    font-family: 'Indie Flower', cursive;
-    position: absolute;
-    top: 20%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-    font-size: 60px;
-    color: white;
-}
-
-section {
-    height: 80vh;
-    color: black;
-}
-
-section h1 {
-    padding-top: 0px;
-    text-align: center;
-    font-size: 80px;
-}
-#onmap {
-    background-color:#6e502b;
-    color:#bf935a;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 9999;
-    border-radius: 25px;
-    width: 230px;
-}
-/*#onmap h2{*/
-/*    color:black;*/
-/*}*/
-
 
 .link {
     width:200px;
     text-align:center;
 }
-/*.link a {*/
-/*    display: block;*/
-/*    float: left;*/
-/*    width:33%;*/
-/*}*/
 
-.transition-fade{
-    opacity: 1;
-    trasition: 500ms;
+
+
+
+/*nav*/
+.nav-team32{
+    color: #343434;
+    font-size: 22px;
+
 }
-html.is-animating .transition-fade {
-    opacity: 0;
+.navbar-brand{
+    padding-top: 0px !important;
+    padding-bottom: 0 !important;
+    padding-left: 40px;
+    margin:0 !important;
 }
+
+
+.brandname{
+    position: absolute;
+    float:left;
+    padding-left: 130px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+
+
+.navbar{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    padding-left: 10px;
+    margin:0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.navbar a{
+    text-align: center !important;
+}
+
+.nav-area {
+    float: right;
+    list-style: none;
+    margin-bottom: 5px;
+
+
+}
+
+.nav-area li {
+    display: inline-block;
+}
+
+.nav-area li a {
+    color: #707074;
+    text-decoration: none;
+    padding: 5px 20px;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+
+}
+
+.nav-area li a:hover{
+    color: #007bff;
+
+}
+
+.logo img{
+    width:100px;
+    float: left;
+    height:auto;
+}
+
 

@@ -57,36 +57,47 @@ function incomeMap(type) {
             }
         }
 // # https://www.w3schools.com/colors/colors_picker.asp
-        let color = '#ecc6c6'
+//         let color = '#ecc6c6'
+//         if (total>0)
+//             color='#d98c8c'
+//         if (total>20)
+//             color='#c65353'
+//         if (total>40)
+//             color='#993333'
+//         if (total>60)
+//             color='#602020'
+//         if (total>80)
+//             color='#391313'
+
+        // let color = '#d11c9ad1'
+        // if (total>0)
+        //     color='#ae59c6'
+        // if (total>30)
+        //     color='#7e88df'
+        // if (total>60)
+        //     color='#009fff'
+        // if (total>90)
+        //     color='#0062ff'
+
+        let color = '#0098ff08'
+        // let color = '#0098ff'
         if (total>0)
-            color='#d98c8c'
-        if (total>20)
-            color='#c65353'
-        if (total>40)
-            color='#993333'
+            color='#7585e3'
+        if (total>30)
+            color='#9e68d1'
         if (total>60)
-            color='#602020'
-        if (total>80)
-            color='#391313'
+            color='#c241b8'
+        if (total>90)
+            color='#e10071'
+
 
         //https://www.w3schools.com/colors/colors_picker.asp
-        //#0033cc
-        // let color = '#ccd9ff'
-        // if (total>0)
-        //     color='#809fff'
-        // if (total>20)
-        //     color='#3366ff'
-        // if (total>40)
-        //     color='#0039e6'
-        // if (total>60)
-        //     color='#002699'
-        // if (total>80)
-        //     color='#001a66'
+
 
 
         return {
             fillColor: color,
-            fillOpacity: 0.7,
+            fillOpacity: 0.6,
             strokeWeight: 1,
             strokeColor:"white"
         }
@@ -143,7 +154,7 @@ function incomeMap(type) {
         map.data.revertStyle();
         map.data.overrideStyle(event.feature, {
 
-            fillOpacity: 1,
+            fillOpacity: 0,
             // fillColor: '#6e502b',
             strokeWeight: 1,
             strokeColor: '#bf935a',
