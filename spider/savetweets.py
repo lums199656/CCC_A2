@@ -116,7 +116,8 @@ if __name__ == '__main__':
     month = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
              'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
 
-    START_TIME = sys.argv[0]#'2020-04-11'
+    START_TIME = sys.argv[1] #'2020-04-11'
+    # print(sys.argv[1])
     print('Crawling...')
     for city_name, geo_code in locate_dic.items():
         try:
@@ -147,7 +148,6 @@ if __name__ == '__main__':
             #   print('time :  ', time)
             id = tweet._json['id_str']
             #   print('time :  ', id)
-            blob = TextBlob(text)
 
             # 处理情感👇 sentiments_exact: 储存具体数值; sentiments_booleant: 储存-1,0,1
             blob = TextBlob(text)
