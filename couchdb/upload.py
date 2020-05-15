@@ -4,7 +4,7 @@ import couchdb
 
 
 def Core():
-    IP_ADDRESS = '115.146.93.182'
+    IP_ADDRESS = '115.146.95.221'
     DB_NAME = 'twitter-10g'
     FILE_PATH = '/Users/luminshen/Desktop/CCC/twitter-melb.json'
 

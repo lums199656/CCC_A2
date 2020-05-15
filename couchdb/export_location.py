@@ -52,7 +52,7 @@ if __name__ == '__main__':
                 coordinate = str(list(reversed(doc['doc']['coordinates']['coordinates'])))[1:-1]
                 try:
                     doc['doc']['location'] = coo_to_city(coordinate)
-                except geopy.exc.GeocoderTimedOut:
+                except:
                     print(str(index_) + " error\n")
                     file_log.write(str(index_) + " error\n")
                     continue
