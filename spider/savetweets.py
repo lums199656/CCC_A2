@@ -148,12 +148,27 @@ if __name__ == '__main__':
             id = tweet._json['id_str']
             #   print('time :  ', id)
             blob = TextBlob(text)
+
+            # 处理情感👇 sentiments_exact: 储存具体数值; sentiments_booleant: 储存-1,0,1
+            blob = TextBlob(text)
+            sentiment = blob.sentiment[0]
+            sentiments_exact = sentiment
+            if sentiment > 0:
+                sentiment = 1
+            elif sentiment < 0:
+                sentiment = -1
+            else:
+                sentiment = int(sentiment)
+
+            # 处理情感👆
             item = {'text': text,
                     'hashtag': hash_tag,
                     'time': time,
                     'id': id,
-                    'sentiment': blob.sentiment[0],
+                    'sentiments_exact': sentiments_exact,
+                    'sentiments_boolean': sentiment,
                     'location': city_name}
+            print(item)
             item = js.dumps(item)
             item = js.loads(item)
             # print (item)
@@ -162,6 +177,5 @@ if __name__ == '__main__':
                     storage.save_tweet(item)
             except:
                 print("The data existed!")
-        print(city_name, "  round success!")
 
     print("Crawl finished!")
