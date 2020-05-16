@@ -59,17 +59,17 @@ def get_sentiments(request):
             if v not in set_:  # 如果i不在集合中
                 set_.add(v)  # 将i添加到集合中
                 num_.append(item.value.count(v))
+        sort_ = zip(num_, list(set_))
+        sort_ = sorted(sort_, reverse=True)
+        num_, set_ = zip(*sort_)
         if item.key[1] == -1:
-            print(-1)
-            ret[item.key[0]]['-1_hastags'] = list(set_)
+            ret[item.key[0]]['-1_hastags'] = set_
             ret[item.key[0]]['-1_hastags_num'] = num_
         elif item.key[1] == 1:
-            print(1)
-            ret[item.key[0]]['1_hastags'] = list(set_)
+            ret[item.key[0]]['1_hastags'] = set_
             ret[item.key[0]]['1_hastags_num'] = num_
         elif item.key[1] == 0:
-            print(0)
-            ret[item.key[0]]['0_hastags'] = list(set_)
+            ret[item.key[0]]['0_hastags'] = set_
             ret[item.key[0]]['0_hastags_num'] = num_
 
     return HttpResponse(json.dumps(ret))
