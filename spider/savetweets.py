@@ -3,6 +3,7 @@ import re
 import tweepy
 import json as js
 import math
+import sys
 
 from TweetStore import TweetStore
 from textblob import TextBlob
@@ -112,10 +113,13 @@ if __name__ == '__main__':
                   'access_token_key': access_token, 'access_token_secret': access_token_secret}
     auth = tweepy.OAuthHandler(OAUTH_KEYS['consumer_key'], OAUTH_KEYS['consumer_secret'])
     api = tweepy.API(auth, wait_on_rate_limit=True)
+    month = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
+             'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
 
-    START_TIME = '2020-04-11'
+    START_TIME = sys.argv[1] #'2020-04-11'
+    # print(sys.argv[1])
+    print('Crawling...')
     for city_name, geo_code in locate_dic.items():
-        print('Crawling')
         try:
             tweets = tweepy.Cursor(api.search,
                                    q=geo_code,
@@ -139,17 +143,32 @@ if __name__ == '__main__':
             #   print('text :  ', text)
             hash_tag = tweet.entities['hashtags']
             #  print('hashtag :  ', hash_tag)
-            time = tweet._json['created_at']
+            time = tweet._json['created_at'].split(" ")
+            time = int(time[-1] + month[time[1]] + time[2])
             #   print('time :  ', time)
             id = tweet._json['id_str']
             #   print('time :  ', id)
+
+            # 处理情感👇 sentiments_exact: 储存具体数值; sentiments_booleant: 储存-1,0,1
             blob = TextBlob(text)
+            sentiment = blob.sentiment[0]
+            sentiments_exact = sentiment
+            if sentiment > 0:
+                sentiment = 1
+            elif sentiment < 0:
+                sentiment = -1
+            else:
+                sentiment = int(sentiment)
+
+            # 处理情感👆
             item = {'text': text,
                     'hashtag': hash_tag,
                     'time': time,
                     'id': id,
-                    'sentiment': blob.sentiment[0],
+                    'sentiments_exact': sentiments_exact,
+                    'sentiments_boolean': sentiment,
                     'location': city_name}
+            print(item)
             item = js.dumps(item)
             item = js.loads(item)
             # print (item)
@@ -158,6 +177,5 @@ if __name__ == '__main__':
                     storage.save_tweet(item)
             except:
                 print("The data existed!")
-        print(city_name, "  round success!")
 
     print("Crawl finished!")
