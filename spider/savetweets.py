@@ -13,7 +13,7 @@ consumer_secret = "AAg8S4FtH5fYwgjAwpZnzuyTrbJ80M7txqDZ3EOdOgdW5Ml5gA"
 access_token = "1479721442-VdveyqVRtJmC83nPrLf2vHbo2bZBpRlHxaWcZHZ"
 access_token_secret = "3UdBzHvXXo1YvVehUkJG7BwYVuSxACd9sBccKlAUZgUza"
 
-COUCH_DATABASE = 'twitter-crawl'
+COUCH_DATABASE = 'twitter_crawl'
 
 storage = TweetStore(COUCH_DATABASE)
 
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     month = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
              'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
 
-    START_TIME = datetime.date.today() #'2020-04-11'
+    START_TIME = '2020-04-11'
     print(datetime.date.today())
     print('Crawling...')
     for city_name, geo_code in locate_dic.items():
@@ -141,7 +141,14 @@ if __name__ == '__main__':
             text = remove_symbol(text)
             text = space_replace(text)
             #   print('text :  ', text)
-            hash_tag = tweet.entities['hashtags']
+
+            # 处理 hashtags👇
+            hashtags = tweet.entities['hashtags']
+            hash_tag = []
+            for hashtag in hashtags:
+                hash_tag.append(hashtag['text'].lower())
+            # 处理 hashtags👆
+
             #  print('hashtag :  ', hash_tag)
             time = tweet._json['created_at'].split(" ")
             time = int(time[-1] + month[time[1]] + time[2])
@@ -162,7 +169,7 @@ if __name__ == '__main__':
 
             # 处理情感👆
             item = {'text': text,
-                    'hashtag': hash_tag,
+                    'hashtags': hash_tag,
                     'time': time,
                     'id': id,
                     'sentiments_exact': sentiments_exact,
