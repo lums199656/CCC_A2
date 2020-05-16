@@ -22,6 +22,6 @@ urlpatterns = [
     path(r'map/', views.go_to_map),
     path(r'chart/', views.go_to_chart),
     path(r'', views.go_to_home),
-    path(r'get_aurin/', views.get_aurin)
-
+    path(r'get_aurin/', views.get_aurin),
+    path(r'get_sentiments/', views.get_sentiments),
 ]
