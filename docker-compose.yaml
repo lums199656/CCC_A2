@@ -21,8 +21,8 @@ services:
       - type: bind
         source: /home/ubuntu/A2_/static/
         target: /home/ubuntu/A2_/static/
-    config:
-      - source: /home/ubuntu/A2_/docker/nginx/default.conf
+      - type: bind
+        source: /home/ubuntu/A2_/docker/nginx/default.conf
         target: /etc/nginx/nginx.conf
 #    volumes:
 #      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
