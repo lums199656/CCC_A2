@@ -1,23 +1,23 @@
-.navbar-custom {
-    background-color: darkgrey;
+.nav-area {
+    float: right;
+    list-style: none;
+    margin-top: 30px;
+    margin-right: 30px;
 }
-/* change the brand and text color */
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-text {
-    color: rgba(255,255,255,.8);
-}
-/* change the link color */
-.navbar-custom .navbar-nav .nav-link {
-    color: rgba(255,255,255,.5);
-}
-/* change the color of active or hovered links */
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:hover .nav-link {
-    color: #ffffff;
+.nav-area li {
+    display: inline-block;
 }
 
-.navbar{
-    margin: 0;
-    font-family: 'Arapey';
+.nav-area li a {
+    color: black;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family: poppins;
+    font-size: 20px;
+}
+
+.nav-area li a:hover{
+    background: #d98c8c;
+    color: #333;
 }
 
