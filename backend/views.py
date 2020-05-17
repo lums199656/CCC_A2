@@ -34,13 +34,13 @@ def get_sentiments(request):
     USER = 'admin'
     PASSWORD = 'admin'
     couchDB = couchdb.Server("http://{}:{}@115.146.95.221:5984/".format(USER, PASSWORD))
-    dbname = "twitter_crawl"
+    dbname = "demo"
     db = couchDB[dbname]
     db_sentiments = db.view("suburbs/sentiments", group=True, group_level=3)
     db_hashtags = db.view("suburbs/hashtags", group=True, group_level=3)
     ret = {}
     for item in db_sentiments:
-        # print(item.key, item.value)
+        print(item.key, item.value)
         if ret.get(item.key[0]) is None:
             ret[item.key[0]] = {1: 0, 0: 0, -1: 0, 'sum': 0, '1_percent': 0.0, '0_percent': 0.0, '-1_percent': 0.0,
                                 '1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': [],
