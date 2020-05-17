@@ -40,7 +40,7 @@ def get_sentiments(request):
     db_hashtags = db.view("suburbs/hashtags", group=True, group_level=3)
     ret = {}
     for item in db_sentiments:
-        print(item.key, item.value)
+        # print(item.key, item.value)
         if ret.get(item.key[0]) is None:
             ret[item.key[0]] = {1: 0, 0: 0, -1: 0, 'sum': 0, '1_percent': 0.0, '0_percent': 0.0, '-1_percent': 0.0,
                                 '1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': [],
@@ -58,11 +58,11 @@ def get_sentiments(request):
                 ret[item.key[0]]['0_percent'] = float(ret[item.key[0]][0]) / float(ret[item.key[0]]['sum'])
             if ret[item.key[0]][-1] != 0:
                 ret[item.key[0]]['-1_percent'] = float(ret[item.key[0]][-1]) / float(ret[item.key[0]]['sum'])
-    print('---------------------------')
+    # print('---------------------------')
     for item in db_hashtags:
         if item.key is None:
             continue
-        print(item.key, item.value)
+        # print(item.key, item.value)
         set_ = set()  # 定义集合
         num_ = []
         for v in item.value:  # 循环列表中的元素
