@@ -17,13 +17,13 @@ services:
     volumes:
       - type: bind
         source: /server/nginx/logs
-        target: /var/log/nginx
+        destination: /var/log/nginx
       - type: bind
         source: /home/ubuntu/A2_/static/
-        target: /home/ubuntu/A2_/static/
+        destination: /home/ubuntu/A2_/static/
       - type: bind
         source: /home/ubuntu/A2_/docker/nginx/default.conf
-        target: /etc/nginx/nginx.conf
+        destination: /etc/nginx/nginx.conf
 #    volumes:
 #      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
 #      - /server/nginx/logs:/var/log/nginx
