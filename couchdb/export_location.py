@@ -36,6 +36,9 @@ if __name__ == '__main__':
         datagram = []
         while True:
             line = file.readline().rstrip(',\n')
+            if index_ < 25101:
+                index_ += 1
+                continue
             if index_ == 0:
                 total_row = int(line[14:23])
                 index_ += 1
@@ -46,6 +49,7 @@ if __name__ == '__main__':
             else:
                 doc = json.loads(line)
                 if ('doc' not in doc) or (len(doc['doc']['entities']['hashtags']) == 0):
+                    index_ += 1
                     continue
 
                 # 将坐标转化成城市👇

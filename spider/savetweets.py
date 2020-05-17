@@ -4,6 +4,7 @@ import tweepy
 import json as js
 import math
 import sys
+import os
 
 from TweetStore import TweetStore
 from textblob import TextBlob
@@ -32,7 +33,7 @@ def cal_distance(lat1, lon1, lat2, lon2):
 
 
 def get_geodic():
-    with open('vic_geo.json') as file:
+    with open(os.getcwd() + '/spider/vic_geo.json') as file:
         data = js.load(file)
         geo_dic = {}
         for line in data['features']:
@@ -107,7 +108,7 @@ def remove_urls(vTEXT):
     return (vTEXT)
 
 
-if __name__ == '__main__':
+def start():
     locate_dic = get_geodic()
     OAUTH_KEYS = {'consumer_key': consumer_key, 'consumer_secret': consumer_secret,
                   'access_token_key': access_token, 'access_token_secret': access_token_secret}
@@ -115,8 +116,7 @@ if __name__ == '__main__':
     api = tweepy.API(auth, wait_on_rate_limit=True)
     month = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
              'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'}
-
-    START_TIME = datetime.date.today() #'2020-04-11'
+    START_TIME = datetime.date.today()  # '2020-04-11'
     print(datetime.date.today())
     print('Crawling...')
     for city_name, geo_code in locate_dic.items():
