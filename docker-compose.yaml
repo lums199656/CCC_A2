@@ -11,9 +11,6 @@ services:
     image: nginx
     ports:
       - '80:80'
-    deploy:
-      mode: replicated
-      replicas: 1
     volumes:
       - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
       - /server/nginx/logs:/var/log/nginx
