@@ -16,20 +16,20 @@ services:
       - /server/nginx/logs:/var/log/nginx
       - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
     container_name: nginx
-  couchdb:
-    image: couchdb
-    restart: always
-    network_mode: host
-    ports:
-      - '5984:5984'
-      - '4369:4369'
-      - '5986:5986'
-      - '9100-9200:9100-9200'
-    volumes:
-      - /home/ubuntu/A2_/couchdb-data:/data
-    environment:
-      - COUCHDB_USER=admin
-      - COUCHDB_PASSWORD=admin
-      - NODENAME=115.146.93.182
-      - COUCHDB_COOKIE=monster
-    container_name: couchdb
+#  couchdb:
+#    image: couchdb
+#    restart: always
+#    network_mode: host
+#    ports:
+#      - '5984:5984'
+#      - '4369:4369'
+#      - '5986:5986'
+#      - '9100-9200:9100-9200'
+#    volumes:
+#      - /home/ubuntu/A2_/couchdb-data:/data
+#    environment:
+#      - COUCHDB_USER=admin
+#      - COUCHDB_PASSWORD=admin
+#      - NODENAME=115.146.93.182
+#      - COUCHDB_COOKIE=monster
+#    container_name: couchdb
