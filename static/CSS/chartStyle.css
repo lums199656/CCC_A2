@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+*{
+    margin:0;
+    padding:0;
+}
+
 #container {
     position:absolute;
-    top:52px;
+    top:70px;
     bottom:0px;
     left:0;
     right:0;
@@ -49,7 +56,7 @@
 /* media query */
 @media (max-width:1900px) {
     #header {height:48px;}
-    #container {top:52px;bottom:10px;}
+    #container {top:70px;bottom:10px;}
     .header-title {line-height:42px;font-size:22px;}
     .flex-cell {padding:10px;}
     .chart-title {height:24px;font-size:16px;}
@@ -146,4 +153,75 @@ body {
     margin: 0;
     font-family: 'Arapey';
 
+}
+
+
+
+
+/*nav*/
+.nav-team32{
+    color: #343434;
+    font-size: 22px;
+
+}
+.navbar-brand{
+    padding-top: 0px !important;
+    padding-bottom: 0 !important;
+    padding-left: 40px;
+    margin:0 !important;
+}
+
+
+.brandname{
+    position: absolute;
+    float:left;
+    padding-left: 130px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+
+
+.navbar{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    padding-left: 10px;
+    margin:0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.navbar a{
+    text-align: center !important;
+}
+
+.nav-area {
+    float: right;
+    list-style: none;
+    margin-bottom: 5px;
+
+
+}
+
+.nav-area li {
+    display: inline-block;
+}
+
+.nav-area li a {
+    color: #707074;
+    text-decoration: none;
+    padding: 5px 20px;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+
+}
+
+.nav-area li a:hover{
+    color: #007bff;
+
+}
+
+.logo img{
+    width:100px;
+    float: left;
+    height:auto;
 }
