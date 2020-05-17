@@ -15,19 +15,9 @@ services:
       mode: replicated
       replicas: 1
     volumes:
-      - type: bind
-        source: /server/nginx/logs
-        destination: /var/log/nginx
-      - type: bind
-        source: /home/ubuntu/A2_/static/
-        destination: /home/ubuntu/A2_/static/
-      - type: bind
-        source: /home/ubuntu/A2_/docker/nginx/default.conf
-        destination: /etc/nginx/nginx.conf
-#    volumes:
-#      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
-#      - /server/nginx/logs:/var/log/nginx
-#      - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
+      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
+      - /server/nginx/logs:/var/log/nginx
+      - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
     container_name: nginx
   couchdb:
     image: couchdb
