@@ -5,8 +5,8 @@ import couchdb
 
 def Core():
     IP_ADDRESS = '115.146.95.221'
-    DB_NAME = 'twitter-10g'
-    FILE_PATH = '/Users/luminshen/Desktop/CCC/twitter-melb.json'
+    DB_NAME = 'demo'
+    FILE_PATH = '/Users/luminshen/Desktop/CCC/demo.json'
 
     couch = couchdb.Server('http://admin:admin@{}:5984/'.format(IP_ADDRESS))
     try:
@@ -17,34 +17,26 @@ def Core():
     db = couch[DB_NAME]
     with open(FILE_PATH) as file:
         index_ = 0
-        total_row = 0
         datagram = []
         while True:
-
-            # try:
-            line = file.readline().rstrip(',\n')
-            if index_ == 0:
-                total_row = int(line[14:23])
-                index_ += 1
-                print('0 %')
-                continue
-            if line == ']}':
-                break
-            else:
-                doc = json.loads(line)
-                if 'doc' not in doc:
-                    continue
-                doc = doc['doc']
-                datagram.append(doc)
+            try:
+                line = file.readline().rstrip(',\n')
+                if len(line) < 10:
+                    print('处理结束！')
+                    break
+                if index_ == 0:
+                    print('开始处理...')
+                else:
+                    datagram.append(eval(line))
+                    if index_ % 1000 == 0:
+                        db.update(datagram)
+                        datagram = []
                 if index_ % 10000 == 0:
-                    db.update(datagram)
-                    datagram = []
-                index_ += 1
-            if index_ % 100000 == 0:
-                print(str(index_ / total_row * 100), "%")
-            # except:
-            #     print(index_, ' error')
-            #     index_ += 1
+                    print('已经处理了 {} 条'.format(index_))
+            except:
+                print(index_, ' error')
+                print(line)
+            index_ += 1
 
 
 if __name__ == '__main__':
