@@ -55,7 +55,6 @@ function extract_unemployment_data_Line(responseText, num){
         unemployed_family.push(myArr[item]["unemployed_family"]);
         dataset.push({x:item, y:myArr[item]["unemployed_family"]})
     }
-
     var final_stats = {"suburb": suburb,"unemployed_family":unemployed_family };
     var data = {
         datasets: [{
@@ -117,7 +116,6 @@ function showLine(data){
 }
 
 function  showBar(data) {
-
     var chart = document.getElementById("barchart").getContext("2d");
     var myBarChart = new Chart(chart, {
         type: 'bar',

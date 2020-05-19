@@ -52,9 +52,48 @@
                 <div class="flex-row">
                     <div class="flex-cell flex-cell-l">
                         <div class="chart-wrapper">
-                            <h3 class="chart-title">Pie Chart</h3>
+                            <div>
+                                <a>
+                                </a>
+                            </div>
                             <div class="chart-div">
-                                <canvas id="pie chart" height="225px"></canvas>
+                                <div>
+                                    <a>Type 1</a>
+                                    <a>VS.</a>
+                                    <a>Type 2</a>
+                                </div>
+                                <div class="select-data">
+                                    <select id="Type1" onchange="changeType()">
+                                        <option value="total_unemployed" selected>Total unemployed</option>
+                                        <option value="non-school_qualification">Non-school qulification</option>
+                                        <option value="death_number">Death number</option>
+                                        <option value="medical_expense">Medical expense</option>
+                                        <option value="imcome_support_percentage">Income support percentage</option>
+                                    </select>
+                                    <a>VS.</a>
+                                    <select id="Type2" onchange="changeType()">
+                                        <option value="total_unemployed">Total unemployed</option>
+                                        <option value="non-school_qualification" selected>Non-school qulification</option>
+                                        <option value="death_number">Death number</option>
+                                        <option value="medical_expense">Medical expense</option>
+                                        <option value="imcome_support_percentage">Income support percentage</option>
+                                    </select>
+                                </div>
+                                <p id="Cities"></p>
+                                <div>
+                                    <a>City Group: </a>
+                                    <select id="City_Group" onchange="changeType()">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -100,9 +139,9 @@
 </div>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-<script src="../static/JavaScript/chartScript.js"></script>
-
+<script src="../static/JavaScript/aurin.js"></script>
+<!--<script src="../static/JavaScript/chartScript.js"></script>-->
+<script src="../static/JavaScript/upperChart.js"></script>
 
 </body>
 
