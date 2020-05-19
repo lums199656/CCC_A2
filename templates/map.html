@@ -11,8 +11,8 @@
 
 </head>
 
-<body>
-<!--<body onload="initMap()">-->
+
+<body onload="startMap()">
 
 <loading :active.sync="visible" :can-cancel="true"></loading>
 <!--------------------------------navbar-------------------------------------------->
@@ -34,7 +34,7 @@
                     Twitter Map
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" onclick="initMap()" > Twitter Map</a>
+                    <a class="dropdown-item" onclick="initMap()" > Positive Twitter</a>
                     <a class="dropdown-item" onclick="incomeMap(['total_unemployed'])">Aurin Map</a>
                     <a class="dropdown-item" onclick="test()">Something else here</a>
                 </div>
@@ -128,7 +128,7 @@
 <script src="/static/JavaScript/aurin.js"></script>
 <script src="/static/JavaScript/MapStyle.js"></script>
 <script src="/static/JavaScript/mapScript.js"></script>
-
+<!--<script src="/static/JavaScript/HomeScript.js"></script>-->
 <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpYrbJl15mV0PUwaBVFRi9owvhRHV-Y4M&callback=initMap"-->
 <!--    async defer></script>-->
 
