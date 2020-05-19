@@ -4,7 +4,8 @@ import json
 import couchdb
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+'/spider/')
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/spider/')
 import savetweets
 import TweetStore
 
@@ -28,6 +29,10 @@ def get_aurin(request):
 def spider(request):
     savetweets.start()
     return HttpResponse('DONE!')
+
+
+def transfer_suburb(raw):
+    pass
 
 
 def get_sentiments(request):
@@ -58,9 +63,9 @@ def get_sentiments(request):
                 ret[item.key[0]]['0_percent'] = float(ret[item.key[0]][0]) / float(ret[item.key[0]]['sum'])
             if ret[item.key[0]][-1] != 0:
                 ret[item.key[0]]['-1_percent'] = float(ret[item.key[0]][-1]) / float(ret[item.key[0]]['sum'])
-    print('---------------------------')
+    # print('---------------------------')
     for item in db_hashtags:
-        if item.key is None:
+        if (item.key is None) or (item is None):
             continue
         # print(item.key, item.value)
         set_ = set()  # 定义集合

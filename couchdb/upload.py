@@ -5,8 +5,9 @@ import couchdb
 
 def Core():
     IP_ADDRESS = '115.146.95.221'
+    # DB_NAME = 'demo_2'
     DB_NAME = 'demo'
-    FILE_PATH = '/Users/luminshen/Desktop/CCC/demo.json'
+    FILE_PATH = '/Users/luminshen/Desktop/CCC/twitter.json'
 
     couch = couchdb.Server('http://admin:admin@{}:5984/'.format(IP_ADDRESS))
     try:
@@ -27,7 +28,10 @@ def Core():
                 if index_ == 0:
                     print('开始处理...')
                 else:
-                    datagram.append(eval(line))
+                    line = eval(line)['doc']
+                    line.pop('_rev')
+                    line.pop('_id')
+                    datagram.append(line)
                     if index_ % 1000 == 0:
                         db.update(datagram)
                         datagram = []
