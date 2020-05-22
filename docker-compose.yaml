@@ -30,6 +30,6 @@ services:
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
-      - NODENAME=45.113.234.69
+      - NODENAME=115.146.94.169
       - COUCHDB_COOKIE=monster
     container_name: couchdb
