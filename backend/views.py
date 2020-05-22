@@ -2,9 +2,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import json
 import couchdb
-import sys
-import os
-import TweetStore
+
 
 
 def go_to_map(request):
