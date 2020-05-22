@@ -4,9 +4,6 @@ import json
 import couchdb
 import sys
 import os
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/spider/')
-import savetweets
 import TweetStore
 
 
@@ -24,11 +21,6 @@ def go_to_home(request):
 
 def get_aurin(request):
     return HttpResponse(json.dumps({'a': 1}))
-
-
-def spider(request):
-    savetweets.start()
-    return HttpResponse('DONE!')
 
 
 def transfer_suburb(raw):
