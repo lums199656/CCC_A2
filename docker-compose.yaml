@@ -1,12 +1,12 @@
 version: '3'
 services:
-#  web:
-#    build: .
-#    ports:
-#      - '8000:8000'
-#    volumes:
-#      - .:/home/ubuntu/A2_
-#    container_name: uwsgi-django
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/home/ubuntu/A2_
+    container_name: uwsgi-django
 #  nginx:
 #    image: nginx
 #    ports:

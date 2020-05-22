@@ -25,4 +25,5 @@ urlpatterns = [
     path(r'get_aurin/', views.get_aurin),
     path(r'get_sentiments/', views.get_sentiments),
     path(r'spider/', views.spider),
+    path(r'get_hashtags/', views.get_hashtags)
 ]

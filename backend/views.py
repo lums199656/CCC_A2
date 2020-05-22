@@ -35,6 +35,35 @@ def transfer_suburb(raw):
     pass
 
 
+def get_hashtags(request):
+    USER = 'admin'
+    PASSWORD = 'admin'
+    couchDB = couchdb.Server("http://{}:{}@115.146.95.221:5984/".format(USER, PASSWORD))
+    # dbname = "twitter_crawl"
+    dbname = "twitter_crawl"
+    db = couchDB[dbname]
+    db_hashtags = db.view("Test2/Test2", group=True, group_level=3)
+    ret = {}
+    for item in db_hashtags:
+        location = item.key[0]
+        sentiment = item.key[1]
+        data = item.value
+        print(item.key, item.value)
+        if ret.get(location) is None:
+            ret[location] = {'1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': 0,
+                                '0_hastags_num': 0, '-1_hastags_num': 0}
+        if sentiment == -1:
+            ret[location]['-1_hastags'] = data['hashtags']
+            ret[location]['-1_hastags_num'] = data['sum']
+        elif sentiment == 1:
+            ret[location]['1_hastags'] = data['hashtags']
+            ret[location]['1_hastags_num'] = data['sum']
+        elif sentiment == 0:
+            ret[location]['0_hastags'] = data['hashtags']
+            ret[location]['0_hastags_num'] = data['sum']
+
+    return HttpResponse(json.dumps(ret))
+
 def get_sentiments(request):
     USER = 'admin'
     PASSWORD = 'admin'
@@ -43,13 +72,10 @@ def get_sentiments(request):
     dbname = "demo"
     db = couchDB[dbname]
     db_sentiments = db.view("suburbs/sentiments", group=True, group_level=3)
-    db_hashtags = db.view("suburbs/hashtags", group=True, group_level=3)
     ret = {}
     for item in db_sentiments:
         if ret.get(item.key[0]) is None:
-            ret[item.key[0]] = {1: 0, 0: 0, -1: 0, 'sum': 0, '1_percent': 0.0, '0_percent': 0.0, '-1_percent': 0.0,
-                                '1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': [],
-                                '0_hastags_num': [], '-1_hastags_num': []}
+            ret[item.key[0]] = {1: 0, 0: 0, -1: 0, 'sum': 0, '1_percent': 0.0, '0_percent': 0.0, '-1_percent': 0.0}
             ret[item.key[0]][item.key[1]] = item.value
             ret[item.key[0]]['sum'] += item.value
         else:
@@ -63,30 +89,6 @@ def get_sentiments(request):
                 ret[item.key[0]]['0_percent'] = float(ret[item.key[0]][0]) / float(ret[item.key[0]]['sum'])
             if ret[item.key[0]][-1] != 0:
                 ret[item.key[0]]['-1_percent'] = float(ret[item.key[0]][-1]) / float(ret[item.key[0]]['sum'])
-    # print('---------------------------')
-    for item in db_hashtags:
-        if (item.key is None) or (item is None):
-            continue
-        # print(item.key, item.value)
-        set_ = set()  # 定义集合
-        num_ = []
-        for v in item.value:  # 循环列表中的元素
-            if v not in set_:  # 如果i不在集合中
-                set_.add(v)  # 将i添加到集合中
-                num_.append(item.value.count(v))
-        sort_ = zip(num_, list(set_))
-        sort_ = sorted(sort_, reverse=True)
-        num_, set_ = zip(*sort_)
-        if item.key[1] == -1:
-            ret[item.key[0]]['-1_hastags'] = set_
-            ret[item.key[0]]['-1_hastags_num'] = num_
-        elif item.key[1] == 1:
-            ret[item.key[0]]['1_hastags'] = set_
-            ret[item.key[0]]['1_hastags_num'] = num_
-        elif item.key[1] == 0:
-            ret[item.key[0]]['0_hastags'] = set_
-            ret[item.key[0]]['0_hastags_num'] = num_
-
     return HttpResponse(json.dumps(ret))
 
 
