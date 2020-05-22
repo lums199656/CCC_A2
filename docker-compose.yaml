@@ -7,15 +7,15 @@ services:
     volumes:
       - .:/home/ubuntu/A2_
     container_name: uwsgi-django
-#  nginx:
-#    image: nginx
-#    ports:
-#      - '80:80'
-#    volumes:
-#      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
-#      - /server/nginx/logs:/var/log/nginx
-#      - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
-#    container_name: nginx
+  nginx:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
+      - /server/nginx/logs:/var/log/nginx
+      - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
+    container_name: nginx
   couchdb:
     image: couchdb
     restart: always
