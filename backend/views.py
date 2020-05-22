@@ -57,7 +57,7 @@ def get_hashtags(request):
 def get_sentiments(request):
     USER = 'admin'
     PASSWORD = 'admin'
-    couchDB = couchdb.Server("http://{}:{}@115.146.95.221:5984/".format(USER, PASSWORD))
+    couchDB = couchdb.Server("http://{}:{}@45.113.234.69:5984/".format(USER, PASSWORD))
     # dbname = "twitter_crawl"
     dbname = "demo"
     db = couchDB[dbname]

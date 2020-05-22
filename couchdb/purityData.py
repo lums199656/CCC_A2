@@ -30,7 +30,7 @@ def IsPtInPoly(aLon, aLat, pointList):
 
 
 def Core():
-    FILE_PATH_IMPORT = '/Volumes/Samsung_T5/twitter-2018.json'
+    FILE_PATH_IMPORT = '/Volumes/Samsung_T5/twitter-2017.json'
     LOCATION_LIST_PATH = '/Users/luminshen/Documents/代码/PycharmProjects/A2_/couchdb/vic_geo.json'
     suburbs_list = open(LOCATION_LIST_PATH)
     suburbs_list = json.load(suburbs_list)['features']
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     data = comm.gather(data, root=0)
     if rank == 0:
         i = 0
-        FILE_PATH_OUTPUT = '/Users/luminshen/Desktop/CCC/twitter-2018-processed.json'
+        FILE_PATH_OUTPUT = '/Users/luminshen/Desktop/CCC/twitter-2017-processed.json'
         file_output = open(FILE_PATH_OUTPUT, 'a')
         for item in data:
             file_output.write(item[0])
