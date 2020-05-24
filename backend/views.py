@@ -1,3 +1,5 @@
+import operator
+
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import json
@@ -44,10 +46,10 @@ def get_hashtags(request):
     db = couchDB[dbname]
     db_hashtags = db.view("Suburbs/hashtags", group=True, group_level=3)
     ret = {}
+    test = {}
     for item in db_hashtags:
         if (item.key is None) or (item.value is None):
             continue
-        print(item.key, item.value)
 
         location = item.key[0]
         sentiment = item.key[1]
@@ -55,26 +57,33 @@ def get_hashtags(request):
         hashtags = []
         hashtags_num = []
         for i in hashtags_info:
-            # print(i[0], i[1])
+            if test.get(i[0]) is None:
+                test[i[0]] = i[1]
+            else:
+                test[i[0]] += i[1]
             hashtags.append(i[0])
             hashtags_num.append(i[1])
         sum_ = item.value[1]
         if ret.get(location) is None:
             ret[location] = {'1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': [],
-                             '0_hastags_num': [], '-1_hastags_num': [], '1_sum': 0, '-1_sum': 0, '1_sum': 0}
+                             '0_hastags_num': [], '-1_hastags_num': [], '1_sum': 0, '-1_sum': 0, '0_sum': 0}
         if sentiment == -1:
             ret[location]['-1_hastags'] = hashtags
             ret[location]['-1_hastags_num'] = hashtags_num
-            ret[location]['-1_num'] = sum_
+            ret[location]['-1_sum'] = sum_
         elif sentiment == 1:
             ret[location]['1_hastags'] = hashtags
             ret[location]['1_hastags_num'] = hashtags_num
-            ret[location]['1_num'] = sum_
+            ret[location]['1_sum'] = sum_
         elif sentiment == 0:
             ret[location]['0_hastags'] = hashtags
             ret[location]['0_hastags_num'] = hashtags_num
-            ret[location]['0_num'] = sum_
+            ret[location]['0_sum'] = sum_
 
+    # print(test)
+    from collections import Counter
+    my_counter = Counter(test).most_common(10)
+    print(my_counter)
     return HttpResponse(json.dumps(ret))
 
 
