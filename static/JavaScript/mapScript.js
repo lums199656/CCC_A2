@@ -293,7 +293,7 @@ function happyTag(name,hashdata) {
         }
 
 
-        var myChart = new Chart(ctx, {
+        var myChart = new Chart(ctx2, {
             type: 'pie',
             options: {
                 legend: {
@@ -340,7 +340,10 @@ function happyTag(name,hashdata) {
             labellist_n.push("other_n");
             color_n = ["#062735","#0c597b", "#0787bf", "#6abbde", "#b6ced8"];
         }
-        var myChart2 = new Chart(ctx2, {
+
+
+
+        var myChart2 = new Chart(ctx3, {
             type: 'pie',
             options: {
                 legend: {
@@ -355,11 +358,15 @@ function happyTag(name,hashdata) {
                 labels: labellist_n,
                 datasets: [{
                     backgroundColor: color_n,
-                    data: resultlist_n,
+                    data: resultlist_n
+
                 }]
             },
         });
-        var myChart3 = new Chart(ctx3, {
+        var sumtag_neg = hashdata[`${name}`][`${"-1_sum"}`];
+        var sumtag_pos = hashdata[`${name}`][`${"1_sum"}`];
+        var sumtag_0 = hashdata[`${name}`][`${"0_sum"}`];
+        var myChart3 = new Chart(ctx, {
             type: 'pie',
             options: {
                 legend: {
@@ -367,15 +374,15 @@ function happyTag(name,hashdata) {
                 },
                 title: {
                     display: true,
-                    text: 'negative hashtag',
+                    text: 'sentiment distribution',
                 }
             },
             data: {
-                labels: labellist,
+                labels: ["neutral","negative","positive"],
                 datasets: [{
                     label: "Population (millions)",
-                    backgroundColor: color,
-                    data: resultlist,
+                    backgroundColor: ["#6abbde","#e47ab0",'#6710a7'],
+                    data: [sumtag_0,sumtag_neg,sumtag_pos]
                 }]
             },
         });
