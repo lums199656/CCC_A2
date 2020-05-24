@@ -26,9 +26,6 @@ def transfer_suburb(request):
     pass
 
 
-{"0": {suburb: [{hashtag: num}, sum]}, "1": {}}
-
-
 def get_hashtags(request):
     global API_KEY
     api_key = request.headers.get("X-API-KEY")
