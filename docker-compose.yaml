@@ -1,21 +1,21 @@
 version: '3'
 services:
-#  web:
-#    build: .
-#    ports:
-#      - '8000:8000'
-#    volumes:
-#      - .:/home/ubuntu/A2_
-#    container_name: uwsgi-django
-#  nginx:
-#    image: nginx
-#    ports:
-#      - '80:80'
-#    volumes:
-#      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
-#      - /server/nginx/logs:/var/log/nginx
-#      - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
-#    container_name: nginx
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/home/ubuntu/A2_
+    container_name: uwsgi-django
+  nginx:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - /home/ubuntu/A2_/docker/nginx/default.conf:/etc/nginx/nginx.conf
+      - /server/nginx/logs:/var/log/nginx
+      - /home/ubuntu/A2_/static/:/home/ubuntu/A2_/static/
+    container_name: nginx
   couchdb:
     image: couchdb
     restart: always
@@ -30,6 +30,6 @@ services:
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=admin
-      - NODENAME=115.146.95.221
+      - NODENAME=45.113.234.69
       - COUCHDB_COOKIE=monster
     container_name: couchdb
