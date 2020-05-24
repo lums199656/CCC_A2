@@ -26,11 +26,14 @@ def transfer_suburb(request):
     pass
 
 
+{"0": {suburb: [{hashtag: num}, sum]}, "1": {}}
+
+
 def get_hashtags(request):
     global API_KEY
-    api_key = request.META.get("X-API-KEY")
+    api_key = request.headers.get("X-API-KEY")
     if api_key != API_KEY:
-        return HttpResponse("Unauthorised")
+        return HttpResponse("Unauthorized")
     USER = 'admin'
     PASSWORD = 'admin'
     couchDB = couchdb.Server("http://{}:{}@115.146.95.221:5984/".format(USER, PASSWORD))
