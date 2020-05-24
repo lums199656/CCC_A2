@@ -381,7 +381,7 @@ function happyTag(name,hashdata) {
                 labels: ["neutral","negative","positive"],
                 datasets: [{
                     label: "Population (millions)",
-                    backgroundColor: ["#6abbde","#e47ab0",'#6710a7'],
+                    backgroundColor: ['#6710a7',"#6abbde","#e47ab0"],
                     data: [sumtag_0,sumtag_neg,sumtag_pos]
                 }]
             },
