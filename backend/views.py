@@ -65,19 +65,19 @@ def get_hashtags(request):
             hashtags_num.append(i[1])
         sum_ = item.value[1]
         if ret.get(location) is None:
-            ret[location] = {'1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': [],
-                             '0_hastags_num': [], '-1_hastags_num': [], '1_sum': 0, '-1_sum': 0, '0_sum': 0}
+            ret[location] = {'1_hashtags': [], '0_hashtags': [], '-1_hashtags': [], '1_hashtags_num': [],
+                             '0_hashtags_num': [], '-1_hashtags_num': [], '1_sum': 0, '-1_sum': 0, '0_sum': 0}
         if sentiment == -1:
-            ret[location]['-1_hastags'] = hashtags
-            ret[location]['-1_hastags_num'] = hashtags_num
+            ret[location]['-1_hashtags'] = hashtags
+            ret[location]['-1_hashtags_num'] = hashtags_num
             ret[location]['-1_sum'] = sum_
         elif sentiment == 1:
-            ret[location]['1_hastags'] = hashtags
-            ret[location]['1_hastags_num'] = hashtags_num
+            ret[location]['1_hashtags'] = hashtags
+            ret[location]['1_hashtags_num'] = hashtags_num
             ret[location]['1_sum'] = sum_
         elif sentiment == 0:
-            ret[location]['0_hastags'] = hashtags
-            ret[location]['0_hastags_num'] = hashtags_num
+            ret[location]['0_hashtags'] = hashtags
+            ret[location]['0_hashtags_num'] = hashtags_num
             ret[location]['0_sum'] = sum_
 
     # print(test)
