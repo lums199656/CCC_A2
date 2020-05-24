@@ -11,12 +11,14 @@
     bottom:0px;
     left:0;
     right:0;
+    height: 150%;
     padding-left: 80px;
     padding-right: 80px;
     padding-top: 20px;
     padding-bottom: 20px;
     transition: margin-left .5s;
-    background-color: #e6e6e6;
+    background-color: #ffe6e6;
+    overflow-y: auto;
 }
 
 #flexCon {
@@ -35,14 +37,22 @@
     display:-webkit-flex;
     display:-ms-flexbox;
     display:flex;
+    padding-top:25px;
+    padding-bottom:25px;
 }
 .flex-cell {-webkit-flex:1;-ms-flex:1;flex:1;padding:15px;}
 .flex-cell-l,
 .flex-cell-r {-webkit-flex:2;-ms-flex:2;flex:2;}
-.flex-cell-c {-webkit-flex:3;-ms-flex:3;flex:3;}
+.flex-cell-c {-webkit-flex:4;-ms-flex:4;flex:4;}
 .flex-cell-lc {-webkit-flex:5;-ms-flex:5;flex:5;}
 
 .chart-wrapper {position:relative;height:100%;}
+/*.chartWrapper > canvas {*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    pointer-events: none;*/
+/*}*/
 .chart-title {height:30px;font-size:20px;font-weight:normal;color:#5ac8fa;}
 .chart-div {
     position:absolute;
@@ -53,7 +63,7 @@
     border-style:solid;
     border-width:2px 2px 2px;
     border-color: #e6e6e6;
-    background-color: #e6e6e6;
+    background-color: #ffe6e6;
     text-align: center;
 }
 
@@ -62,7 +72,7 @@
     #header {height:48px;}
     #container {top:70px;bottom:10px;}
     .header-title {line-height:42px;font-size:22px;}
-    .flex-cell {padding:10px;}
+    .flex-cell {padding:10px;padding-bottom:50px;padding-top:50px}
     .chart-title {height:24px;font-size:16px;}
     .chart-div {top:24px;}
 }
@@ -228,4 +238,65 @@ body {
     width:100px;
     float: left;
     height:auto;
+}
+
+/*the container must be positioned relative:*/
+.select-data {
+    position: relative;
+    font-family: Arial;
+}
+
+.select-data select {
+    display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
 }
