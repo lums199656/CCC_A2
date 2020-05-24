@@ -79,6 +79,47 @@ $.ajax({
 })
 var sentiment_2015 = JSON.parse(sentiment3)
 
+var sentiment4 = 5;
+$.ajax({
+    url:'../get_sentiments/',
+    methods:'get',
+    headers:{ 'X-API-KEY': 'de9dECvvcd48CfEdvfDrgbtD'},
+    async:false,
+    data:{"year":"2016"},
+    success: (data) =>{
+        console.log(2);
+        sentiment4 = data;
+    }
+})
+var sentiment_2016 = JSON.parse(sentiment4)
+
+var sentiment5 = 5;
+$.ajax({
+    url:'../get_sentiments/',
+    methods:'get',
+    headers:{ 'X-API-KEY': 'de9dECvvcd48CfEdvfDrgbtD'},
+    async:false,
+    data:{"year":"2017"},
+    success: (data) =>{
+        console.log(2);
+        sentiment5 = data;
+    }
+})
+var sentiment_2017 = JSON.parse(sentiment5)
+
+var sentiment6 = 5;
+$.ajax({
+    url:'../get_sentiments/',
+    methods:'get',
+    headers:{ 'X-API-KEY': 'de9dECvvcd48CfEdvfDrgbtD'},
+    async:false,
+    data:{"year":"2018"},
+    success: (data) =>{
+        console.log(2);
+        sentiment6 = data;
+    }
+})
+var sentiment_2018 = JSON.parse(sentiment6)
 /////////////////////////////////////twitter map//////////////////////////////////////////////////////
 
 
@@ -223,8 +264,8 @@ function happyTag(name,hashdata) {
 
         var positive_color = ["#5d0937", "#8c0c52", "#cc3b8b", "#e47ab0", "#deb6cc"]
         var negative_color = ["#062735","#0c597b", "#0787bf", "#6abbde", "#b6ced8"]
-        var taglist = hashdata[`${name}`][`${"1_hastags_num"}`];
-        var label = hashdata[`${name}`][`${"1_hastags"}`];
+        var taglist = hashdata[`${name}`][`${"1_hashtags_num"}`];
+        var label = hashdata[`${name}`][`${"1_hashtags"}`];
 
         var top3tag = 0;
         var resultlist = [];
@@ -272,8 +313,8 @@ function happyTag(name,hashdata) {
                 }]
             },
         });
-        var taglist_n = hashdata[`${name}`][`${"-1_hastags_num"}`];
-        var label_n = hashdata[`${name}`][`${"-1_hastags"}`];
+        var taglist_n = hashdata[`${name}`][`${"-1_hashtags_num"}`];
+        var label_n = hashdata[`${name}`][`${"-1_hashtags"}`];
 
         var top3tag_n = 0;
         var resultlist_n = [];
