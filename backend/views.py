@@ -33,7 +33,9 @@ def get_hashtags(request):
     api_key = request.headers.get("X-API-KEY")
     if api_key != API_KEY:
         return HttpResponse("Unauthorized")
+    print("hhhh")
     year = request.GET.get("year")
+    print(year)
     try:
         int(year)
         dbname = 'twitter-' + year
