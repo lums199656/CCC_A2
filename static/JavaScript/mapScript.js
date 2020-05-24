@@ -8,6 +8,9 @@
 //        }
 //    })
 // }
+var ajax_image = "<img src='../image/back.png' alt='Loading...' />";
+$('#ReplaceDiv').html(ajax_image);
+
 function startMap() {
     // this.visible=true
     var map = new google.maps.Map(document.getElementById('startMap'), {
@@ -149,19 +152,26 @@ function initMap(sentiment_data,hashtag_data) {
 
         let color = '#0098ff08'
         if (total>0)
-            color='#d5b9ea'
+            color='#f7f5f7'
+        if (total>0.1)
+            color='#d2bbdd'
         if (total>0.2)
-            color='#a97dca'
+            color='#b286d7'
+        if (total>0.3)
+            color='#9a53d4'
+        if (total>0.4)
+            color='#942dd1'
         if (total>0.5)
-            color='#9647d0'
+            color='#7426b4'
         if (total>0.6)
-            color='#6710a7'
+            color='#5f1e94'
         if (total>0.7)
-            color='#3f0c65'
-        if (total>0.8)
-            color ='#2a0546'
+            color='#541a83'
+        if(total>0.8)
+            color='#2e0b4a'
         if(total>0.9)
-            color='#1b032d'
+            color='#18032a'
+
 
 
 
@@ -179,7 +189,7 @@ function initMap(sentiment_data,hashtag_data) {
 
 
     var infowindow = new google.maps.InfoWindow({
-        maxWidth: 400,
+        maxWidth: 500,
         maxHeight: 400
     });
     map.data.addListener('click', function(event) {
@@ -200,7 +210,7 @@ function initMap(sentiment_data,hashtag_data) {
 
 
         infowindow.setContent('<h5 class="font-weight-bold">'+ name +'</h5>'+'<p>Happy Score:'+happyScore+'</p>'+
-            '<canvas id="myChart" width="10" height="10"></canvas>'+
+            '<canvas id="myChart" width="20" height="20"></canvas>'+
             '<canvas id="myChart2" width="10" height="10"></canvas>'+
             '<canvas id="myChart3" width="10" height="10"></canvas>'+
             // '<button class="btn" onclick="happyTag(subname,Happydata)">Positive</button>'+
@@ -433,22 +443,27 @@ function incomeMap(type) {
             }
         }
 
-
         let color = '#0098ff08'
         if (total>0)
-            color='#d5b9ea'
+            color='#f7f5f7'
+        if (total>0.1)
+            color='#d2bbdd'
         if (total>0.2)
-            color='#a97dca'
+            color='#b286d7'
+        if (total>0.3)
+            color='#9a53d4'
+        if (total>0.4)
+            color='#942dd1'
         if (total>0.5)
-            color='#9647d0'
+            color='#7426b4'
         if (total>0.6)
-            color='#6710a7'
+            color='#5f1e94'
         if (total>0.7)
-            color='#3f0c65'
-        if (total>0.8)
-            color ='#2a0546'
+            color='#541a83'
+        if(total>0.8)
+            color='#2e0b4a'
         if(total>0.9)
-            color='#1b032d'
+            color='#18032a'
 
 
         //https://www.w3schools.com/colors/colors_picker.asp
@@ -540,9 +555,9 @@ function incomeMap(type) {
     function aurinChart(name) {
         console.log(document.getElementById('barChart'))
         var ctx = document.getElementById('barChart');
-        var eco_label = ["total_unemployed", "unemployed_family","non_school"]
-        var eco_data = [aurin[`${name}`][`${'total_unemployed'}`], aurin[`${name}`][`${"unemployed_family"}`],aurin[`${name}`][`${"non-school_qualification"}`]]
-        var bar_color = ["#8c0c52","#cc3b8b", "#e47ab0"]
+        var eco_label = ["total_unemployed","non-school_qualification"]
+        var eco_data = [aurin[`${name}`][`${'total_unemployed'}`], aurin[`${name}`][`${"non-school_qualification"}`]]
+        var bar_color = ["#8c0c52","#cc3b8b"]
         var myBarChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
