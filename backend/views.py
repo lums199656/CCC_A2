@@ -31,31 +31,49 @@ def get_hashtags(request):
     api_key = request.headers.get("X-API-KEY")
     if api_key != API_KEY:
         return HttpResponse("Unauthorized")
+    year = request.GET.get("year")
+    try:
+        int(year)
+        dbname = 'twitter-' + year
+    except ValueError:
+        dbname = 'twitter_crawl'
     USER = 'admin'
     PASSWORD = 'admin'
-    couchDB = couchdb.Server("http://{}:{}@115.146.95.221:5984/".format(USER, PASSWORD))
+    couchDB = couchdb.Server("http://{}:{}@45.113.234.69:5984/".format(USER, PASSWORD))
     # dbname = "twitter_crawl"
-    dbname = "twitter_crawl"
     db = couchDB[dbname]
-    db_hashtags = db.view("Test2/Test2", group=True, group_level=3)
+    db_hashtags = db.view("Suburbs/hashtags", group=True, group_level=3)
+
     ret = {}
     for item in db_hashtags:
+        if (item.key is None) or (item.value is None):
+            continue
+        print(item.key, item.value)
+
         location = item.key[0]
         sentiment = item.key[1]
-        data = item.value
-        print(item.key, item.value)
+        hashtags_info = item.value[0]
+        hashtags = []
+        hashtags_num = []
+        for i in hashtags_info:
+            hashtags.append(i[0])
+            hashtags_num.append(i[1])
+        sum_ = item.value[1]
         if ret.get(location) is None:
-            ret[location] = {'1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': 0,
-                             '0_hastags_num': 0, '-1_hastags_num': 0}
+            ret[location] = {'1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': [],
+                             '0_hastags_num': [], '-1_hastags_num': [], '1_sum': 0, '-1_sum': 0, '1_sum': 0}
         if sentiment == -1:
-            ret[location]['-1_hastags'] = data['hashtags']
-            ret[location]['-1_hastags_num'] = data['sum']
+            ret[location]['-1_hastags'] = hashtags
+            ret[location]['-1_hastags_num'] = hashtags_num
+            ret[location]['-1_num'] = sum_
         elif sentiment == 1:
-            ret[location]['1_hastags'] = data['hashtags']
-            ret[location]['1_hastags_num'] = data['sum']
+            ret[location]['1_hastags'] = hashtags
+            ret[location]['1_hastags_num'] = hashtags_num
+            ret[location]['1_num'] = sum_
         elif sentiment == 0:
-            ret[location]['0_hastags'] = data['hashtags']
-            ret[location]['0_hastags_num'] = data['sum']
+            ret[location]['0_hastags'] = hashtags
+            ret[location]['0_hastags_num'] = hashtags_num
+            ret[location]['0_num'] = sum_
 
     return HttpResponse(json.dumps(ret))
 
@@ -105,19 +123,24 @@ def upload_to_couchdb(request):
 
 def get_sentiments(request):
     global API_KEY
-    api_key = request.META.get("X-API-KEY")
+    api_key = request.headers.get("X-API-KEY")
     if api_key != API_KEY:
-        return HttpResponse("Unauthorised")
-
+        return HttpResponse("Unauthorized")
+    year = request.GET.get("year")
+    try:
+        int(year)
+        dbname = 'twitter-' + year
+    except ValueError:
+        dbname = 'twitter_crawl'
     USER = 'admin'
     PASSWORD = 'admin'
     couchDB = couchdb.Server("http://{}:{}@45.113.234.69:5984/".format(USER, PASSWORD))
     # dbname = "twitter_crawl"
-    dbname = "demo"
     db = couchDB[dbname]
-    db_sentiments = db.view("suburbs/sentiments", group=True, group_level=3)
+    db_sentiments = db.view("Suburbs/sentiments", group=True, group_level=3)
     ret = {}
     for item in db_sentiments:
+        # print(item.key, item.value)
         if ret.get(item.key[0]) is None:
             ret[item.key[0]] = {1: 0, 0: 0, -1: 0, 'sum': 0, '1_percent': 0.0, '0_percent': 0.0, '-1_percent': 0.0}
             ret[item.key[0]][item.key[1]] = item.value
