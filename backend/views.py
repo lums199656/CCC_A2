@@ -3,6 +3,7 @@ from django.shortcuts import render
 import json
 import couchdb
 
+API_KEY = 'de9dECvvcd48CfEdvfDrgbtD'
 
 
 def go_to_map(request):
@@ -21,11 +22,15 @@ def get_aurin(request):
     return HttpResponse(json.dumps({'a': 1}))
 
 
-def transfer_suburb(raw):
+def transfer_suburb(request):
     pass
 
 
 def get_hashtags(request):
+    global API_KEY
+    api_key = request.META.get("X-API-KEY")
+    if api_key != API_KEY:
+        return HttpResponse("Unauthorised")
     USER = 'admin'
     PASSWORD = 'admin'
     couchDB = couchdb.Server("http://{}:{}@115.146.95.221:5984/".format(USER, PASSWORD))
@@ -41,7 +46,7 @@ def get_hashtags(request):
         print(item.key, item.value)
         if ret.get(location) is None:
             ret[location] = {'1_hastags': [], '0_hastags': [], '-1_hastags': [], '1_hastags_num': 0,
-                                '0_hastags_num': 0, '-1_hastags_num': 0}
+                             '0_hastags_num': 0, '-1_hastags_num': 0}
         if sentiment == -1:
             ret[location]['-1_hastags'] = data['hashtags']
             ret[location]['-1_hastags_num'] = data['sum']
@@ -54,7 +59,56 @@ def get_hashtags(request):
 
     return HttpResponse(json.dumps(ret))
 
+
+def get_sentiments_avg(request):
+    pass
+
+
+def upload_to_couchdb(request):
+    IP_ADDRESS = '45.113.234.69'
+    # DB_NAME = 'demo_2'
+    DB_NAME = 'twitter-2018'
+    FILE_PATH = '/Users/luminshen/Desktop/CCC/twitter-data/twitter-2018-processed.json'
+
+    couch = couchdb.Server('http://admin:admin@{}:5984/'.format(IP_ADDRESS))
+    try:
+        db = couch.create(DB_NAME)
+    except couchdb.http.PreconditionFailed:
+        print(DB_NAME, '已存在')
+
+    db = couch[DB_NAME]
+    with open(FILE_PATH) as file:
+        index_ = 0
+        datagram = []
+        while True:
+            try:
+                line = file.readline().rstrip(',\n')
+                if len(line) < 10:
+                    print('处理结束！')
+                    break
+                if index_ == 0:
+                    print('开始处理...')
+                else:
+                    line = eval(line)['doc']
+                    datagram.append(line)
+                    if index_ % 1000 == 0:
+                        db.update(datagram)
+                        datagram = []
+                if index_ % 1000 == 0:
+                    print('已经处理了 {} 条'.format(index_))
+            except:
+                print(index_, ' error')
+                print(line)
+            index_ += 1
+    return HttpResponse('UPLOAD DONE!')
+
+
 def get_sentiments(request):
+    global API_KEY
+    api_key = request.META.get("X-API-KEY")
+    if api_key != API_KEY:
+        return HttpResponse("Unauthorised")
+
     USER = 'admin'
     PASSWORD = 'admin'
     couchDB = couchdb.Server("http://{}:{}@45.113.234.69:5984/".format(USER, PASSWORD))

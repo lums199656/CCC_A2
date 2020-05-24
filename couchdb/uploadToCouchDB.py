@@ -4,10 +4,10 @@ import couchdb
 
 
 def Core():
-    IP_ADDRESS = '115.146.95.221'
+    IP_ADDRESS = '45.113.234.69'
     # DB_NAME = 'demo_2'
-    DB_NAME = 'demo'
-    FILE_PATH = '/Users/luminshen/Desktop/CCC/twitter.json'
+    DB_NAME = 'twitter-2018'
+    FILE_PATH = '/Users/luminshen/Desktop/CCC/twitter-data/twitter-2018-processed.json'
 
     couch = couchdb.Server('http://admin:admin@{}:5984/'.format(IP_ADDRESS))
     try:
@@ -29,13 +29,11 @@ def Core():
                     print('开始处理...')
                 else:
                     line = eval(line)['doc']
-                    line.pop('_rev')
-                    line.pop('_id')
                     datagram.append(line)
                     if index_ % 1000 == 0:
                         db.update(datagram)
                         datagram = []
-                if index_ % 10000 == 0:
+                if index_ % 1000 == 0:
                     print('已经处理了 {} 条'.format(index_))
             except:
                 print(index_, ' error')

@@ -91,6 +91,8 @@ def Core():
                             tmp_line['doc']['location'] = suburb['properties']['vic_loca_2']
                             set_.add(tmp_line['doc']['location'])
                             break
+                        else:
+                            continue
                     # 处理坐标字段👆
 
                     i += 1
@@ -111,7 +113,7 @@ if __name__ == '__main__':
     data = comm.gather(data, root=0)
     if rank == 0:
         i = 0
-        FILE_PATH_OUTPUT = '/Users/luminshen/Desktop/CCC/twitter-2017-processed.json'
+        FILE_PATH_OUTPUT = '/Users/luminshen/Desktop/CCC/twitter-data/twitter-2017-processed.json'
         file_output = open(FILE_PATH_OUTPUT, 'a')
         for item in data:
             file_output.write(item[0])
