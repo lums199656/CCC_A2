@@ -6,8 +6,8 @@ import couchdb
 def Core():
     IP_ADDRESS = '45.113.234.69'
     # DB_NAME = 'demo_2'
-    DB_NAME = 'twitter-2018'
-    FILE_PATH = '/Users/luminshen/Desktop/CCC/twitter-data/twitter-2018-processed.json'
+    DB_NAME = 'twitter-2014'
+    FILE_PATH = '/Users/luminshen/Desktop/CCC/twitter-data/twitter-2014-processed.json'
 
     couch = couchdb.Server('http://admin:admin@{}:5984/'.format(IP_ADDRESS))
     try:

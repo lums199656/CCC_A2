@@ -43,7 +43,6 @@ def get_hashtags(request):
     # dbname = "twitter_crawl"
     db = couchDB[dbname]
     db_hashtags = db.view("Suburbs/hashtags", group=True, group_level=3)
-
     ret = {}
     for item in db_hashtags:
         if (item.key is None) or (item.value is None):
@@ -56,6 +55,7 @@ def get_hashtags(request):
         hashtags = []
         hashtags_num = []
         for i in hashtags_info:
+            # print(i[0], i[1])
             hashtags.append(i[0])
             hashtags_num.append(i[1])
         sum_ = item.value[1]
