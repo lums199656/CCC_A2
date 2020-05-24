@@ -8,8 +8,7 @@
 //        }
 //    })
 // }
-var ajax_image = "<img src='../image/back.png' alt='Loading...' />";
-$('#ReplaceDiv').html(ajax_image);
+
 
 function startMap() {
     // this.visible=true
@@ -23,6 +22,10 @@ function startMap() {
 
     });
 }
+var res = {
+    loader: $('<div />',{class:'loader'}),
+    container: $('#startMap')
+}
 
 
 var sentiment = 5;
@@ -33,7 +36,11 @@ $.ajax({
     headers:{ 'X-API-KEY': 'de9dECvvcd48CfEdvfDrgbtD'},
     async:false,
     data:{"year":""},
+    beforeSend: function(){
+        res.container.append(res.loader);
+    },
     success: (data) =>{
+        res.container.find(res.loader).remove();
         console.log(2);
         sentiment = data;
     }
