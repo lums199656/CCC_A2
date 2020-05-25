@@ -601,7 +601,306 @@ function incomeMap(type) {
 }
 
 
+/////compare
+function compareMap(){
+    map = new google.maps.Map(document.getElementById('startMap'), {
+        center: {lat: -37.8, lng: 144.9},
+        zoom: 12,
+        styles: mapStyle2,
+        mapTypeControl: false,
 
-// #97afbf  #559ccc  #659cc1  #2f6b94 #0f2d42
+    });
+    map.data.loadGeoJson('/static/JSON/vic_geo.json');
+    map.data.setStyle((feature) => {
+        let name = feature.getProperty('vic_loca_2')
+        let total = 0
 
-// #0b2a40  #e47ab0 #e47ab0  #e47ab0 #e47ab0
+        if (sentiment_2014[`${name}`] && sentiment_2015[`${name}`] &&
+            sentiment_2016[`${name}`] &&sentiment_2017[`${name}`]
+            && sentiment_2018[`${name}`]){
+            if(sentiment_2014[`${name}`][`${'1_percent'}`] && sentiment_2015[`${name}`][`${'1_percent'}`] &&
+                sentiment_2016[`${name}`][`${'1_percent'}`] &&sentiment_2017[`${name}`][`${'1_percent'}`]
+            && sentiment_2018[`${name}`][`${'1_percent'}`]){
+            total= ((sentiment_2014[`${name}`][`${'1_percent'}`]+sentiment_2015[`${name}`][`${'1_percent'}`]+
+                sentiment_2016[`${name}`][`${'1_percent'}`]+sentiment_2017[`${name}`][`${'1_percent'}`]+sentiment_2018[`${name}`][`${'1_percent'}`])/5).toFixed(2)
+        }
+        }
+        let color = '#0098ff08'
+        if (total>0)
+            color='#f7f5f7'
+        if (total>0.1)
+            color='#d2bbdd'
+        if (total>0.2)
+            color='#b286d7'
+        if (total>0.3)
+            color='#9a53d4'
+        if (total>0.4)
+            color='#942dd1'
+        if (total>0.5)
+            color='#7426b4'
+        if (total>0.6)
+            color='#5f1e94'
+        if (total>0.7)
+            color='#541a83'
+        if(total>0.8)
+            color='#2e0b4a'
+        if(total>0.9)
+            color='#18032a'
+
+        return {
+            fillColor: color,
+            fillOpacity: 0.6,
+            strokeWeight: 1,
+            strokeColor:"white"
+        }
+    })
+    var infowindow = new google.maps.InfoWindow;
+    map.data.addListener('click', function(event) {
+        // prepare data
+
+        let name = event.feature.getProperty('vic_loca_2')
+        let meanscore = 0
+
+        if (sentiment_2014[`${name}`] && sentiment_2015[`${name}`] &&
+            sentiment_2016[`${name}`] &&sentiment_2017[`${name}`]
+            && sentiment_2018[`${name}`]){
+            if(sentiment_2014[`${name}`][`${'1_percent'}`] && sentiment_2015[`${name}`][`${'1_percent'}`] &&
+                sentiment_2016[`${name}`][`${'1_percent'}`] &&sentiment_2017[`${name}`][`${'1_percent'}`]
+                && sentiment_2018[`${name}`][`${'1_percent'}`]){
+            meanscore= ((sentiment_2014[`${name}`][`${'1_percent'}`]+sentiment_2015[`${name}`][`${'1_percent'}`]+
+                sentiment_2016[`${name}`][`${'1_percent'}`]+sentiment_2017[`${name}`][`${'1_percent'}`]+sentiment_2018[`${name}`][`${'1_percent'}`])/5).toFixed(2)
+            subname = name;}
+        }
+
+        infowindow.setContent('<h5 class="font-weight-bold">'+ name +'</h5>'+
+            '<p>Average Happy Score: ' +meanscore+'</p>'+
+            '<canvas id="lineChart" ></canvas>'+
+            '<style>' + 'h5{font-size:15px; text-align: center}'+'.barChart{height: 85px; width: 170px}'
+            + '</style>')
+
+        infowindow.setPosition(event.latLng)
+        infowindow.open(map)
+
+})
+    map.data.addListener('click', function(event) {
+        let name = event.feature.getProperty('vic_loca_2')
+
+        if (sentiment_2014[`${name}`]) {
+            subname = name;
+            lineChart(subname);
+        }
+
+    });
+
+
+    map.data.addListener('click', function(event) {
+        event.feature.setProperty('isColorful', true);
+    });
+
+    map.data.addListener('mouseover', function(event) {
+        map.data.revertStyle();
+        map.data.overrideStyle(event.feature, {
+
+            fillOpacity: 1,
+            // fillColor: '#6e502b',
+            strokeWeight: 1,
+            strokeColor: '#bf935a',
+        });
+    });
+    map.data.addListener('mouseout', function(event) {
+        map.data.revertStyle();
+    });
+
+    function lineChart(name) {
+        console.log(document.getElementById('lineChart'))
+        var ctx = document.getElementById('lineChart').getContext("2d");
+        var year_label = [2014,2015,2016,2017,2018];
+        var year_data = [sentiment_2014[`${name}`][`${'1_percent'}`], sentiment_2015[`${name}`][`${'1_percent'}`],
+            sentiment_2016[`${name}`][`${'1_percent'}`], sentiment_2017[`${name}`][`${'1_percent'}`], sentiment_2018[`${name}`][`${'1_percent'}`]]
+        var health_data = [0,0];
+        if(death[`${name}`]){
+            health_data = [death[`${name}`][`${'death_2014'}`],death[`${name}`][`${'death_2015'}`]]
+        }
+        console.log(death[`${name}`][`${'death_2014'}`])
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: year_label,
+                datasets: [{
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    backgroundColor: "#6fabfa82",
+                    borderColor: "#007bff99",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    label: 'happy score #tweets ',
+                    data: year_data,
+                },
+                {
+                    label: "health score #aurin",
+                    backgroundColor: "#e91e637d",
+                    borderColor: "#cc3c8b9c",
+                    fillColor: "#cc3b8b",
+                    strokeColor: "#cc3b8b",
+                    pointColor: "#cc3b8b",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: health_data
+                }]
+            },
+        });
+    }
+}
+
+function auspolMap(){
+    map = new google.maps.Map(document.getElementById('startMap'), {
+        center: {lat: -37.8, lng: 144.9},
+        zoom: 12,
+        styles: mapStyle2,
+        mapTypeControl: false,
+
+    });
+    map.data.loadGeoJson('/static/JSON/vic_geo.json');
+    map.data.setStyle((feature) => {
+        let name = feature.getProperty('vic_loca_2')
+        let total = 0
+
+        if (auspol[`${name}`]){
+
+            total = auspol[`${name}`][`${"2014"}`][`${"auspol"}`]+
+                auspol[`${name}`][`${"2015"}`][`${"auspol"}`]+
+                auspol[`${name}`][`${"2016"}`][`${"auspol"}`]+
+                auspol[`${name}`][`${"2017"}`][`${"auspol"}`]+
+                auspol[`${name}`][`${"2017"}`][`${"auspol"}`]
+        }
+        let color = '#0098ff08'
+        if (total == 0)
+            color='#f7f5f7'
+        if (total>0)
+            color='#d2bbdd'
+        if (total>0)
+            color='#b286d7'
+        if (total>5)
+            color='#9a53d4'
+        if (total>10)
+            color='#942dd1'
+        if (total>15)
+            color='#7426b4'
+        if (total>20)
+            color='#5f1e94'
+        if (total>25)
+            color='#541a83'
+        if(total>30)
+            color='#2e0b4a'
+        if(total>35)
+            color='#18032a'
+
+        return {
+            fillColor: color,
+            fillOpacity: 0.6,
+            strokeWeight: 1,
+            strokeColor:"white"
+        }
+    })
+    var infowindow = new google.maps.InfoWindow;
+    map.data.addListener('click', function(event) {
+        // prepare data
+
+        let name = event.feature.getProperty('vic_loca_2')
+        let auspoltweet = 0
+
+        if (auspol[`${name}`]){
+                auspoltweet = auspol[`${name}`][`${"2014"}`][`${"auspol"}`]+
+                    auspol[`${name}`][`${"2015"}`][`${"auspol"}`]+
+                    auspol[`${name}`][`${"2016"}`][`${"auspol"}`]+
+                    auspol[`${name}`][`${"2017"}`][`${"auspol"}`]+
+                    auspol[`${name}`][`${"2017"}`][`${"auspol"}`];
+                subname = name;
+        }
+
+        infowindow.setContent('<h5 class="font-weight-bold">'+ name +'</h5>'+
+            '<p>#Auspol Tweets: ' +auspoltweet+'</p>'+
+            '<canvas id="ausChart" ></canvas>'+
+            '<style>' + 'h5{font-size:15px; text-align: center}'+'.barChart{height: 85px; width: 170px}'
+            + '</style>')
+
+        infowindow.setPosition(event.latLng)
+        infowindow.open(map)
+
+    })
+    map.data.addListener('click', function(event) {
+        let name = event.feature.getProperty('vic_loca_2')
+
+        if (auspol[`${name}`]) {
+            subname = name;
+            ausChart(subname);
+        }
+
+    });
+
+
+    map.data.addListener('click', function(event) {
+        event.feature.setProperty('isColorful', true);
+    });
+
+    map.data.addListener('mouseover', function(event) {
+        map.data.revertStyle();
+        map.data.overrideStyle(event.feature, {
+
+            fillOpacity: 1,
+            // fillColor: '#6e502b',
+            strokeWeight: 1,
+            strokeColor: '#bf935a',
+        });
+    });
+    map.data.addListener('mouseout', function(event) {
+        map.data.revertStyle();
+    });
+
+    function ausChart(name) {
+        console.log(document.getElementById('ausChart'))
+        var ctx = document.getElementById('ausChart').getContext("2d");
+        var year_label = [2014,2015,2016,2017,2018];
+        var year_data = [auspol[`${name}`][`${'2014'}`][`${'auspol_1_percent'}`]/100,
+            auspol[`${name}`][`${'2015'}`][`${'auspol_1_percent'}`]/100,auspol[`${name}`][`${'2016'}`][`${'auspol_1_percent'}`]/100,
+            auspol[`${name}`][`${'2017'}`][`${'auspol_1_percent'}`]/100,auspol[`${name}`][`${'2018'}`][`${'auspol_1_percent'}`]/100]
+        var health_data = [0,0];
+        if(death[`${name}`]){
+            health_data = [death[`${name}`][`${'death_2014'}`],death[`${name}`][`${'death_2015'}`]]
+        }
+        console.log(death[`${name}`][`${'death_2014'}`])
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: year_label,
+                datasets: [{
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    backgroundColor: "#6fabfa82",
+                    borderColor: "#007bff99",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    label: ' positive #auspol from tweets',
+                    data: year_data,
+                },
+                    {
+                        label: "#health score from aurin",
+                        backgroundColor: "#e91e637d",
+                        borderColor: "#cc3c8b9c",
+                        fillColor: "#cc3b8b",
+                        strokeColor: "#cc3b8b",
+                        pointColor: "#cc3b8b",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: health_data
+                    }]
+            },
+        });
+    }
+}
