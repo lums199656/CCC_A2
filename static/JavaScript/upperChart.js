@@ -15,7 +15,7 @@ function callServer(callback, num, statistics1, statistics2){
     xmlhttp.send();
 }
 
-function  showBar(data) {
+function  showBar(data, yID1, yID2) {
     if (myBarChart){
         myBarChart.destroy();
     }
@@ -26,9 +26,15 @@ function  showBar(data) {
         options: {
             scales: {
                 yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
+                    id: yID1,
+                    type: 'linear',
+                    position: 'left',
+                    // display: true
+                }, {
+                    id: yID2,
+                    type: 'linear',
+                    position: 'right',
+                    // display: true
                 }]
             }
         }
@@ -62,18 +68,20 @@ function extract_unemployment_data_Bar(responseText, num, statistics1, statistic
             data: type1,
             backgroundColor: "#ecc6c6",
             borderColor: "#ecc6c6",
-            borderWidth: 1
+            borderWidth: 1,
+            // yAxisID: statistics1
         },{
             label: statistics2,
             data: type2,
             backgroundColor: "#ff4d4d",
             borderColor: "#ff4d4d",
-            borderWidth: 1
+            borderWidth: 1,
+            // yAxisID: statistics2
         }],
         labels: suburb
     }
 
-    showBar(data);
+    showBar(data, statistics1, statistics2);
 }
 
 function changeType(){
