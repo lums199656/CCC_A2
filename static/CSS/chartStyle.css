@@ -11,14 +11,14 @@
     bottom:0px;
     left:0;
     right:0;
-    height: 150%;
+    height: 180%;
     padding-left: 80px;
     padding-right: 80px;
     padding-top: 20px;
     padding-bottom: 20px;
     transition: margin-left .5s;
-    background-color: #ffe6e6;
-    overflow-y: auto;
+    /*background-color: #b3c6ff;*/
+    /*overflow-y: auto;*/
 }
 
 #flexCon {
@@ -53,7 +53,7 @@
 /*    top: 0;*/
 /*    pointer-events: none;*/
 /*}*/
-.chart-title {height:30px;font-size:20px;font-weight:normal;color:#5ac8fa;}
+.chart-title {height:30px;font-size:20px;font-weight:normal;color:#000066;}
 .chart-div {
     position:absolute;
     top:30px;
@@ -62,8 +62,8 @@
     right:0;
     border-style:solid;
     border-width:2px 2px 2px;
-    border-color: #e6e6e6;
-    background-color: #ffe6e6;
+    border-color: #ffffff;
+    background-color: #ffffff;
     text-align: center;
 }
 
@@ -240,13 +240,12 @@ body {
     height:auto;
 }
 
-#Type1{
+#Type1,#Type3{
     background-color: #ecc6c6;
     border-color: #ecc6c6;
 }
 
-
-#Type2{
+#Type2,#year_select{
     background-color: #ff4d4d;
     border-color: #ff4d4d;
 }

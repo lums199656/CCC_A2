@@ -91,7 +91,6 @@ function changeType(){
     // console.log(statistics2);
     var chart = document.getElementById("barchart").getContext("2d");
     callServer(extract_unemployment_data_Bar, num, statistics1, statistics2);
-    document.getElementById("Cities").innerHTML = suburb.slice((num-1)*10, num*10);
 }
 
 

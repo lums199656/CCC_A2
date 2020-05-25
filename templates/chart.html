@@ -49,31 +49,28 @@
             <div id="flexCon">
                 <div class="flex-row">
                     <div class="flex-cell flex-cell-c">
-                        <div class="chart-wrapper" style="width: 100%; overflow-x: auto;overflow-y:auto">
-                            <div>
-                                <a>The comparision of two statistics</a>
-                                <a>Type 1</a>
+                        <div>
+                            <a class="chart-title">The comparision of two statistics</a>
+                            <a class="select-data">
+                                <select class="stats_select" id="Type1" onchange="changeType()">
+                                    <option value="total_unemployed" selected>Total unemployed</option>
+                                    <option value="non-school_qualification">Non-school qulification</option>
+                                    <option value="death_number">Death number</option>
+                                    <option value="medical_expense">Medical expense</option>
+                                    <option value="imcome_support_percentage">Income support percentage</option>
+                                </select>
                                 <a>VS.</a>
-                                <a>Type 2</a>
-                                <a class="select-data">
-                                    <select id="Type1" onchange="changeType()">
-                                        <option value="total_unemployed" selected>Total unemployed</option>
-                                        <option value="non-school_qualification">Non-school qulification</option>
-                                        <option value="death_number">Death number</option>
-                                        <option value="medical_expense">Medical expense</option>
-                                        <option value="imcome_support_percentage">Income support percentage</option>
-                                    </select>
-                                    <a>VS.</a>
-                                    <select id="Type2" onchange="changeType()">
-                                        <option value="total_unemployed">Total unemployed</option>
-                                        <option value="non-school_qualification" selected>Non-school qulification</option>
-                                        <option value="death_number">Death number</option>
-                                        <option value="medical_expense">Medical expense</option>
-                                        <option value="imcome_support_percentage">Income support percentage</option>
-                                    </select>
-                                </a>
-                            </div>
-                            <div class="chart-div" style="width: 30000px; height: 400px">
+                                <select id="Type2" onchange="changeType()">
+                                    <option value="total_unemployed">Total unemployed</option>
+                                    <option value="non-school_qualification" selected>Non-school qulification</option>
+                                    <option value="death_number">Death number</option>
+                                    <option value="medical_expense">Medical expense</option>
+                                    <option value="imcome_support_percentage">Income support percentage</option>
+                                </select>
+                            </a>
+                        </div>
+                        <div class="chart-wrapper" style="width: 100%; overflow-x: auto;overflow-y:auto">
+                            <div class="chart-div" style="width: 30000px; height: 450px">
                                     <canvas id="barchart" width="0" height="100%"></canvas>
                             </div>
                         </div>
@@ -82,9 +79,9 @@
                 </div>
                 <div class="flex-row">
                     <div class="flex-cell flex-cell-lc">
-                        <div class="chart-wrapper">
-                            <h3 class="chart-title"> The average sentiments of different suburbs from 2014 to 2018</h3>
-                            <div class="chart-div chart-done" style="width: 1500px; height: 200px">
+                        <a class="chart-title"> The average sentiments of different suburbs from 2014 to 2018</a>
+                        <div class="chart-wrapper" style="width: 100%; overflow-x: auto;overflow-y:auto">
+                            <div class="chart-div chart-done" style="width: 100%; height: 100%">
                                 <div class="chart-loader"><div class="loader"></div></div>
                                 <canvas id="linechart" height="90%"></canvas>
                             </div>
@@ -92,18 +89,29 @@
                     </div>
                 </div>
                 <div class="flex-row">
-                    <div class="flex-cell">
-                        <div class="chart-wrapper">
-                            <div class="chart-div chart-done">
-                                <a>This is the new Div</a>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="flex-cell flex-cell-l">
+                        <a class="select-data">
+                            <select class="stats_select" id="Type3" onchange="changeStats()">
+                                <option value="total_unemployed" selected>Total unemployed</option>
+                                <option value="non-school_qualification">Non-school qulification</option>
+                                <option value="death_number">Death number</option>
+                                <option value="medical_expense">Medical expense</option>
+                                <option value="imcome_support_percentage">Income support percentage</option>
+                            </select>
+                        </a>
+                        <a class="chart-title"> against with the sentiments in</a>
+                        <a class="select-data">
+                            <select class="stats_select" id="year_select" onchange="changeStats()">
+                                <option value="2014" selected>2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                            </select>
+                        </a>
                         <div class="chart-wrapper">
                             <div class="chart-div chart-done">
-
+                                <canvas id="scatterchart" height="80%" width=“”></canvas>
                             </div>
                         </div>
                     </div>
@@ -118,6 +126,7 @@
 <script src="../static/JavaScript/aurin.js"></script>
 <!--<script src="../static/JavaScript/chartScript.js"></script>-->
 <script src="../static/JavaScript/upperChart.js"></script>
+<script src="../static/JavaScript/middle_chart.js"></script>
 <script src="../static/JavaScript/lower_chart.js"></script>
 
 </body>
