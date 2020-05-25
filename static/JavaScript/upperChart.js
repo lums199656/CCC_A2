@@ -15,7 +15,7 @@ function callServer(callback, num, statistics1, statistics2){
     xmlhttp.send();
 }
 
-function  showBar(data) {
+function  showBar(data, yID1, yID2) {
     if (myBarChart){
         myBarChart.destroy();
     }
@@ -26,9 +26,15 @@ function  showBar(data) {
         options: {
             scales: {
                 yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
+                    id: yID1,
+                    type: 'linear',
+                    position: 'left',
+                    // display: true
+                }, {
+                    id: yID2,
+                    type: 'linear',
+                    position: 'right',
+                    // display: true
                 }]
             }
         }
@@ -59,32 +65,62 @@ function extract_unemployment_data_Bar(responseText, num, statistics1, statistic
     var data = {
         datasets: [{
             label: statistics1,
-            data: type1.slice((num-1)*10, num*10),
+            data: type1,
             backgroundColor: "#ecc6c6",
             borderColor: "#ecc6c6",
-            borderWidth: 1
+            borderWidth: 1,
+            // yAxisID: statistics1
         },{
             label: statistics2,
-            data: type2.slice((num-1)*10, num*10),
+            data: type2,
             backgroundColor: "#ff4d4d",
             borderColor: "#ff4d4d",
-            borderWidth: 1
+            borderWidth: 1,
+            // yAxisID: statistics2
         }],
-        labels: suburb.slice((num-1)*10, num*10)
+        labels: suburb
     }
 
-    showBar(data);
+    showBar(data, statistics1, statistics2);
 }
 
 function changeType(){
     var statistics1 = document.getElementById("Type1").value;
     var statistics2 = document.getElementById("Type2").value;
-    var num = document.getElementById("City_Group").value;
     // console.log(statistics1);
     // console.log(statistics2);
     var chart = document.getElementById("barchart").getContext("2d");
     callServer(extract_unemployment_data_Bar, num, statistics1, statistics2);
     document.getElementById("Cities").innerHTML = suburb.slice((num-1)*10, num*10);
 }
+
+
+var x = {"a":1 ,"b":2};
+var y = {"a":5, "c":3};
+
+var z = [x,y]
+var hehe = {}
+function addTwoObjects(object){
+    var i;
+    var j;
+    for (i in object){
+        for (j in object[i]){
+            console.log(object[i][j]);
+            if (j in hehe){
+                hehe[j]+=object[i][j];
+            }else{
+                hehe[j]=object[i][j];
+            }
+        }
+    }
+}
+
+var list = 	{"taxavoidance": 5, "wagetheft": 1, "lnp": 1, "gippsnews": 16, "covid": 4, "testing": 2, "genderequality": 5, "deferit": 1};
+keysSorted = Object.keys(list).sort(function(a,b){return list[a]-list[b]})
+console.log(keysSorted);
+let entries = Object.entries(list);
+console.log(Object.values(list));
+let sorted = entries.sort((a, b) => b[1] - a[1]);
+console.log(sorted.slice(0,2));
 
 callServer(extract_unemployment_data_Bar, 1, "total_unemployed", "non-school_qualification");
