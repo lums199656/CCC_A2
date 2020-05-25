@@ -159,25 +159,25 @@ function initMap(sentiment_data,hashtag_data) {
 
         let color = '#0098ff08'
         if (total>0)
-            color='#f7f5f7'
+            color='#f4eef1'
         if (total>0.1)
-            color='#d2bbdd'
+            color='#efcdd2'
         if (total>0.2)
-            color='#b286d7'
+            color='#d88fa1'
         if (total>0.3)
-            color='#9a53d4'
+            color='#b07599'
         if (total>0.4)
-            color='#942dd1'
+            color='#6a4b86'
         if (total>0.5)
-            color='#7426b4'
+            color='#413470'
         if (total>0.6)
-            color='#5f1e94'
+            color='#2d2764'
         if (total>0.7)
-            color='#541a83'
+            color='#1a1956'
         if(total>0.8)
-            color='#2e0b4a'
+            color='#0d0b39'
         if(total>0.9)
-            color='#18032a'
+            color='#0d021c'
 
 
 
@@ -452,25 +452,25 @@ function incomeMap(type) {
 
         let color = '#0098ff08'
         if (total>0)
-            color='#f7f5f7'
+            color='#f4eef1'
         if (total>0.1)
-            color='#d2bbdd'
+            color='#efcdd2'
         if (total>0.2)
-            color='#b286d7'
+            color='#d88fa1'
         if (total>0.3)
-            color='#9a53d4'
+            color='#b07599'
         if (total>0.4)
-            color='#942dd1'
+            color='#6a4b86'
         if (total>0.5)
-            color='#7426b4'
+            color='#413470'
         if (total>0.6)
-            color='#5f1e94'
+            color='#2d2764'
         if (total>0.7)
-            color='#541a83'
+            color='#1a1956'
         if(total>0.8)
-            color='#2e0b4a'
+            color='#0d0b39'
         if(total>0.9)
-            color='#18032a'
+            color='#0d021c'
 
 
         //https://www.w3schools.com/colors/colors_picker.asp
@@ -627,25 +627,25 @@ function compareMap(){
         }
         let color = '#0098ff08'
         if (total>0)
-            color='#f7f5f7'
+            color='#f4eef1'
         if (total>0.1)
-            color='#d2bbdd'
+            color='#efcdd2'
         if (total>0.2)
-            color='#b286d7'
+            color='#d88fa1'
         if (total>0.3)
-            color='#9a53d4'
+            color='#b07599'
         if (total>0.4)
-            color='#942dd1'
+            color='#6a4b86'
         if (total>0.5)
-            color='#7426b4'
+            color='#413470'
         if (total>0.6)
-            color='#5f1e94'
+            color='#2d2764'
         if (total>0.7)
-            color='#541a83'
+            color='#1a1956'
         if(total>0.8)
-            color='#2e0b4a'
+            color='#0d0b39'
         if(total>0.9)
-            color='#18032a'
+            color='#0d021c'
 
         return {
             fillColor: color,
@@ -813,26 +813,26 @@ function auspolMap(){
                 auspol[`${name}`][`${"2017"}`][`${"auspol"}`]
         }
         let color = '#0098ff08'
-        if (total == 0)
-            color='#f7f5f7'
+        if (total==0)
+            color='#f4eef1'
         if (total>0)
-            color='#d2bbdd'
-        if (total>0)
-            color='#b286d7'
+            color='#efcdd2'
         if (total>5)
-            color='#9a53d4'
+            color='#d88fa1'
         if (total>10)
-            color='#942dd1'
+            color='#b07599'
         if (total>15)
-            color='#7426b4'
+            color='#6a4b86'
         if (total>20)
-            color='#5f1e94'
+            color='#413470'
         if (total>25)
-            color='#541a83'
-        if(total>30)
-            color='#2e0b4a'
+            color='#2d2764'
+        if (total>30)
+            color='#1a1956'
         if(total>35)
-            color='#18032a'
+            color='#0d0b39'
+        if(total>40)
+            color='#0d021c'
 
         return {
             fillColor: color,
