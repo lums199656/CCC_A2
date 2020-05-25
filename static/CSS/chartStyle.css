@@ -11,12 +11,14 @@
     bottom:0px;
     left:0;
     right:0;
+    height: 150%;
     padding-left: 80px;
     padding-right: 80px;
     padding-top: 20px;
     padding-bottom: 20px;
     transition: margin-left .5s;
-    background-color: #e6e6e6;
+    background-color: #ffe6e6;
+    overflow-y: auto;
 }
 
 #flexCon {
@@ -35,14 +37,22 @@
     display:-webkit-flex;
     display:-ms-flexbox;
     display:flex;
+    padding-top:25px;
+    padding-bottom:25px;
 }
 .flex-cell {-webkit-flex:1;-ms-flex:1;flex:1;padding:15px;}
 .flex-cell-l,
 .flex-cell-r {-webkit-flex:2;-ms-flex:2;flex:2;}
-.flex-cell-c {-webkit-flex:3;-ms-flex:3;flex:3;}
+.flex-cell-c {-webkit-flex:4;-ms-flex:4;flex:4;}
 .flex-cell-lc {-webkit-flex:5;-ms-flex:5;flex:5;}
 
 .chart-wrapper {position:relative;height:100%;}
+/*.chartWrapper > canvas {*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    pointer-events: none;*/
+/*}*/
 .chart-title {height:30px;font-size:20px;font-weight:normal;color:#5ac8fa;}
 .chart-div {
     position:absolute;
@@ -53,7 +63,7 @@
     border-style:solid;
     border-width:2px 2px 2px;
     border-color: #e6e6e6;
-    background-color: #e6e6e6;
+    background-color: #ffe6e6;
     text-align: center;
 }
 
@@ -62,7 +72,7 @@
     #header {height:48px;}
     #container {top:70px;bottom:10px;}
     .header-title {line-height:42px;font-size:22px;}
-    .flex-cell {padding:10px;}
+    .flex-cell {padding:10px;padding-bottom:50px;padding-top:50px}
     .chart-title {height:24px;font-size:16px;}
     .chart-div {top:24px;}
 }
@@ -229,3 +239,15 @@ body {
     float: left;
     height:auto;
 }
+
+#Type1{
+    background-color: #ecc6c6;
+    border-color: #ecc6c6;
+}
+
+
+#Type2{
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
