@@ -48,28 +48,28 @@ var config = {
                 data: dataset1.data,
                 backgroundColor: dataset1.backgroundColor,
                 borderColor: dataset1.borderColor,
-                borderWidth: 1,
+                borderWidth: 5,
                 fill: false
             },{
                 label: dataset2.label,
                 data: dataset2.data,
                 backgroundColor: dataset2.backgroundColor,
                 borderColor: dataset2.borderColor,
-                borderWidth: 1,
+                borderWidth: 5,
                 fill: false
             },{
                 label: dataset3.label,
                 data: dataset3.data,
                 backgroundColor: dataset3.backgroundColor,
                 borderColor: dataset3.borderColor,
-                borderWidth: 1,
+                borderWidth: 5,
                 fill: false
             },{
                 label: dataset4.label,
                 data: dataset4.data,
                 backgroundColor: dataset4.backgroundColor,
                 borderColor: dataset4.borderColor,
-                borderWidth: 1,
+                borderWidth: 5,
                 fill: false
             }
         ],
