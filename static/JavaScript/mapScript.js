@@ -671,9 +671,14 @@ function compareMap(){
                 sentiment_2016[`${name}`][`${'1_percent'}`]+sentiment_2017[`${name}`][`${'1_percent'}`]+sentiment_2018[`${name}`][`${'1_percent'}`])/5).toFixed(2)
             subname = name;}
         }
+        let alert = ""
+        if(!death[`${name}`]) {
+            alert = "Sorry... aurin data missing : ("
+        }
 
         infowindow.setContent('<h5 class="font-weight-bold">'+ name +'</h5>'+
             '<p>Average Happy Score: ' +meanscore+'</p>'+
+            '<p>'+alert+'</p>'+
             '<canvas id="lineChart" ></canvas>'+
             '<style>' + 'h5{font-size:15px; text-align: center}'+'.barChart{height: 85px; width: 170px}'
             + '</style>')
@@ -687,7 +692,12 @@ function compareMap(){
 
         if (sentiment_2014[`${name}`]) {
             subname = name;
-            lineChart(subname);
+            if(death[`${name}`]){
+                lineChart(subname);
+            }
+            else{
+                lineChart2(subname)
+            }
         }
 
     });
@@ -720,8 +730,8 @@ function compareMap(){
         var health_data = [0,0];
         if(death[`${name}`]){
             health_data = [death[`${name}`][`${'death_2014'}`],death[`${name}`][`${'death_2015'}`]]
+            console.log(death[`${name}`][`${'death_2014'}`])
         }
-        console.log(death[`${name}`][`${'death_2014'}`])
         var myLineChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -749,6 +759,32 @@ function compareMap(){
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
                     data: health_data
+                }]
+            },
+        });
+    }
+    function lineChart2(name) {
+        console.log(document.getElementById('lineChart'))
+        var ctx = document.getElementById('lineChart');
+        var year_label = [2014,2015,2016,2017,2018];
+        var year_data = [sentiment_2014[`${name}`][`${'1_percent'}`], sentiment_2015[`${name}`][`${'1_percent'}`],
+            sentiment_2016[`${name}`][`${'1_percent'}`], sentiment_2017[`${name}`][`${'1_percent'}`], sentiment_2018[`${name}`][`${'1_percent'}`]]
+
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: year_label,
+                datasets: [{
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    backgroundColor: "#6fabfa82",
+                    borderColor: "#007bff99",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    label: 'happy score #tweets ',
+                    data: year_data,
                 }]
             },
         });
@@ -820,9 +856,14 @@ function auspolMap(){
                     auspol[`${name}`][`${"2017"}`][`${"auspol"}`];
                 subname = name;
         }
+        var alert = "";
+        if(!death[`${name}`]) {
+            alert = "Sorry... aurin data missing : ("
+        }
 
         infowindow.setContent('<h5 class="font-weight-bold">'+ name +'</h5>'+
             '<p>#Auspol Tweets: ' +auspoltweet+'</p>'+
+            '<p>'+alert+'</p>'+
             '<canvas id="ausChart" ></canvas>'+
             '<style>' + 'h5{font-size:15px; text-align: center}'+'.barChart{height: 85px; width: 170px}'
             + '</style>')
@@ -836,7 +877,13 @@ function auspolMap(){
 
         if (auspol[`${name}`]) {
             subname = name;
+
+            if(death[`${name}`]){
             ausChart(subname);
+            }
+            else{
+                ausChart2(subname)
+            }
         }
 
     });
@@ -860,10 +907,13 @@ function auspolMap(){
         map.data.revertStyle();
     });
 
+
+
     function ausChart(name) {
         console.log(document.getElementById('ausChart'))
         var ctx = document.getElementById('ausChart').getContext("2d");
         var year_label = [2014,2015,2016,2017,2018];
+
         var year_data = [auspol[`${name}`][`${'2014'}`][`${'auspol_1_percent'}`]/100,
             auspol[`${name}`][`${'2015'}`][`${'auspol_1_percent'}`]/100,auspol[`${name}`][`${'2016'}`][`${'auspol_1_percent'}`]/100,
             auspol[`${name}`][`${'2017'}`][`${'auspol_1_percent'}`]/100,auspol[`${name}`][`${'2018'}`][`${'auspol_1_percent'}`]/100]
@@ -889,7 +939,7 @@ function auspolMap(){
                     data: year_data,
                 },
                     {
-                        label: "#health score from aurin",
+                        label: "health score from aurin",
                         backgroundColor: "#e91e637d",
                         borderColor: "#cc3c8b9c",
                         fillColor: "#cc3b8b",
@@ -900,6 +950,35 @@ function auspolMap(){
                         pointHighlightStroke: "rgba(220,220,220,1)",
                         data: health_data
                     }]
+            },
+        });
+    }
+    function ausChart2(name) {
+        console.log(document.getElementById('ausChart'))
+        var ctx = document.getElementById('ausChart');
+        var year_label = [2014,2015,2016,2017,2018];
+
+        var year_data = [auspol[`${name}`][`${'2014'}`][`${'auspol_1_percent'}`]/100,
+            auspol[`${name}`][`${'2015'}`][`${'auspol_1_percent'}`]/100,auspol[`${name}`][`${'2016'}`][`${'auspol_1_percent'}`]/100,
+            auspol[`${name}`][`${'2017'}`][`${'auspol_1_percent'}`]/100,auspol[`${name}`][`${'2018'}`][`${'auspol_1_percent'}`]/100]
+
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: year_label,
+                datasets: [{
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    backgroundColor: "#6fabfa82",
+                    borderColor: "#007bff99",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    label: ' positive #auspol from tweets',
+                    data: year_data,
+                }
+                    ]
             },
         });
     }
