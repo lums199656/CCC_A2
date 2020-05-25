@@ -48,21 +48,15 @@ def get_hashtags(request):
     db = couchDB[dbname]
     db_hashtags = db.view("Suburbs/hashtags", group=True, group_level=3)
     ret = {}
-    test = {}
     for item in db_hashtags:
         if (item.key is None) or (item.value is None):
             continue
-
         location = item.key[0]
         sentiment = item.key[1]
         hashtags_info = item.value[0]
         hashtags = []
         hashtags_num = []
         for i in hashtags_info:
-            if test.get(i[0]) is None:
-                test[i[0]] = i[1]
-            else:
-                test[i[0]] += i[1]
             hashtags.append(i[0])
             hashtags_num.append(i[1])
         sum_ = item.value[1]
@@ -82,10 +76,6 @@ def get_hashtags(request):
             ret[location]['0_hashtags_num'] = hashtags_num
             ret[location]['0_sum'] = sum_
 
-    # print(test)
-    from collections import Counter
-    my_counter = Counter(test).most_common(10)
-    print(my_counter)
     return HttpResponse(json.dumps(ret))
 
 
