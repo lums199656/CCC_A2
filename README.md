@@ -1,16 +1,16 @@
-# CCC_A2
-Team Members:
+# Group 32
+## Team Members:
 
-Minshen Lu - 1039243
-Zhe Wang - 1064919
-Zisheng Cheng - 1105176
-Yanming Wang - 1049577
-Kailun Huang - 828808
+* Minshen Lu - 1039243
+* Zhe Wang - 1064919
+* Zisheng Cheng - 1105176
+* Yanming Wang - 1049577
+* Kailun Huang - 828808
 
 
-Video links
+## Video links
 
-Ansible
+### Ansible
 
 https://youtu.be/RW0KPW1tAsA
 
@@ -22,15 +22,15 @@ PPT
 
 https://docs.google.com/presentation/d/1Qh8GSjCTdOJmY1ZWcf8TvxqVexH1DuxgqklMqmUXJvs/edit#slide=id.g5173a8b583_0_62
 
-Project Structure
+## Project Structure
 
-FrontEnd
+### FrontEnd
 
-Bootstrap
-Data visualization
-Monitor
+1. Bootstrap
+2. Data visualization
+3. Monitor
 
-BackEnd
+### BackEnd
 
 Django(8000) -> Nginx reverse proxy port 80 /api
 CouchDB related interface
@@ -69,19 +69,9 @@ Deployment Operation
 Ansible creates 4 hosts with one click
 Docker runs 3 CouchDB instances
 
-Server Arrangement
+## Server Arrangement
 
-Server1: 45.113.234.69
-
-CouchDB/
-Frontend/
-Nginx/
-Django/
-CAdvisor/
-Spider/ 
-CAdvisor/
-
-Server2: 115.146.94.169
+### Server1: 45.113.234.69
 
 CouchDB/
 Frontend/
@@ -91,7 +81,7 @@ CAdvisor/
 Spider/ 
 CAdvisor/
 
-Server3: 115.146.93.145
+### Server2: 115.146.94.169
 
 CouchDB/
 Frontend/
@@ -101,7 +91,17 @@ CAdvisor/
 Spider/ 
 CAdvisor/
 
-Server4: 115.146.95.10
+### Server3: 115.146.93.145
+
+CouchDB/
+Frontend/
+Nginx/
+Django/
+CAdvisor/
+Spider/ 
+CAdvisor/
+
+### Server4: 115.146.95.10
 
 Grafana/ 
 InfluxDB/ 
