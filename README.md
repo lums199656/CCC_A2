@@ -16,11 +16,11 @@ https://youtu.be/RW0KPW1tAsA
 
 ### Frontend presentation
 
-https://youtu.be/M5xhnEHwKNg
+xxx
 
 ### PPT
 
-https://docs.google.com/presentation/d/1Qh8GSjCTdOJmY1ZWcf8TvxqVexH1DuxgqklMqmUXJvs/edit#slide=id.g5173a8b583_0_62
+xxx
 
 ## Project Structure
 
