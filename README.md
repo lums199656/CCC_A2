@@ -71,41 +71,36 @@ Docker runs 3 CouchDB instances
 
 ## Server Arrangement
 
-### Server1: 45.113.234.69
+Server1: 45.113.234.69
+    
+    CouchDB/couchdb:lastest
+    uwsgi-django/
+    Nginx/ nginx:lastest
+    cAdvisor/ google/cadvisor:lastest
+    spider/
 
-CouchDB/
-Frontend/
-Nginx/
-Django/
-CAdvisor/
-Spider/ 
-CAdvisor/
 
-### Server2: 115.146.94.169
+Server2: 115.146.94.169
+    
+    CouchDB/couchdb:lastest
+    uwsgi-django/
+    Nginx/ nginx:lastest
+    cAdvisor/ google/cadvisor:lastest
+    spider/
 
-CouchDB/
-Frontend/
-Nginx/
-Django/
-CAdvisor/
-Spider/ 
-CAdvisor/
-
-### Server3: 115.146.93.145
-
-  CouchDB/
-  Frontend/
-  Nginx/
-  Django/
-  CAdvisor/
-  Spider/ 
-  CAdvisor/
-
-### Server4: 115.146.95.10
-
-Grafana/ 
-InfluxDB/ 
-cAdvisor/ 
-Frontend/
-Nginx/
-Django/
+Server3: 115.146.93.145
+    
+    CouchDB/couchdb:lastest
+    uwsgi-django/
+    Nginx/ nginx:lastest
+    cAdvisor/ google/cadvisor:lastest
+    spider/
+    
+Server4: 115.146.95.10
+    
+    CouchDB/couchdb:lastest
+    uwsgi-django/
+    Grafana/ grafana/grafana:lastest
+    InfluxDB/ influxdb:lastest
+    cAdvisor/ google/cadvisor:lastest
+    
