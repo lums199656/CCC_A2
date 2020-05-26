@@ -3,7 +3,22 @@ var type1 = [];
 var type2 = [];
 var color = [];
 var myBarChart;
+var recieve_result = {}
 
+$.ajax({
+    url:'../get_sentiments_count/',
+    methods:'get',
+    headers:{ 'X-API-KEY': 'de9dECvvcd48CfEdvfDrgbtD'},
+    async:false,
+    data:{"year":""},
+    success: (data) =>{
+        console.log(2);
+        recieve_result = data;
+    }
+})
+
+var suburb_sentiments_count = JSON.parse(recieve_result)
+console.log(suburb_sentiments_count)
 function callServer(callback, num, statistics1, statistics2){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
@@ -22,22 +37,7 @@ function  showBar(data, yID1, yID2) {
     var chart = document.getElementById("barchart").getContext("2d");
     myBarChart = new Chart(chart, {
         type: 'bar',
-        data: data,
-        options: {
-            scales: {
-                yAxes: [{
-                    id: yID1,
-                    type: 'linear',
-                    position: 'left',
-                    // display: true
-                }, {
-                    id: yID2,
-                    type: 'linear',
-                    position: 'right',
-                    // display: true
-                }]
-            }
-        }
+        data: data
     });
 
 }
@@ -51,13 +51,25 @@ function extract_unemployment_data_Bar(responseText, num, statistics1, statistic
     // console.log(statistics1);
     // console.log(statistics2);
     for (item in myArr){
-        suburb.push(item);
-        // console.log(statistics1);
-        // console.log(statistics2);
-        type1.push(myArr[item][statistics1]);
-        // console.log(myArr[item][statistics1]);
-        // console.log(myArr[item]["total_unemployed"]);
-        type2.push(myArr[item][statistics2]);
+        // suburb.push(item);
+        // // console.log(statistics1);
+        // // console.log(statistics2);
+        // type1.push(myArr[item][statistics1]);
+        // // console.log(myArr[item][statistics1]);
+        // // console.log(myArr[item]["total_unemployed"]);
+        // type2.push(myArr[item][statistics2]);
+        if (item in suburb_sentiments_count){
+            type1.push(myArr[item][statistics1])
+            if (suburb_sentiments_count[item][statistics2] < 10){
+                type2.push(suburb_sentiments_count[item][statistics2]*100)
+            }else if(suburb_sentiments_count[item][statistics2] < 50){
+                type2.push(suburb_sentiments_count[item][statistics2]*20)
+            }else if(suburb_sentiments_count[item][statistics2] <100){
+                type2.push(suburb_sentiments_count[item][statistics2]*10)
+            }
+
+            suburb.push(item)
+        }
     }
     console.log(type1);
     console.log(type2);
@@ -122,4 +134,4 @@ console.log(Object.values(list));
 let sorted = entries.sort((a, b) => b[1] - a[1]);
 console.log(sorted.slice(0,2));
 
-callServer(extract_unemployment_data_Bar, 1, "total_unemployed", "non-school_qualification");
+callServer(extract_unemployment_data_Bar, 1, "total_unemployed", "1");

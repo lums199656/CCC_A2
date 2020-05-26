@@ -25,5 +25,6 @@ urlpatterns = [
     path(r'get_aurin/', views.get_aurin),
     path(r'get_sentiments/', views.get_sentiments),
     path(r'get_hashtags/', views.get_hashtags),
-    path(r'upload_to_couchdb', views.upload_to_couchdb)
+    path(r'upload_to_couchdb/', views.upload_to_couchdb),
+    path(r'get_sentiments_count/', views.get_sentiments_count)
 ]

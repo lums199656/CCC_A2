@@ -28,6 +28,31 @@ def transfer_suburb(request):
     pass
 
 
+def get_sentiments_count(request):
+    global API_KEY
+    api_key = request.headers.get("X-API-KEY")
+    if api_key != API_KEY:
+        return HttpResponse("Unauthorized")
+    dbname = 'twitter_crawl'
+    USER = 'admin'
+    PASSWORD = 'admin'
+    couchDB = couchdb.Server("http://{}:{}@45.113.234.69:5984/".format(USER, PASSWORD))
+    # dbname = "twitter_crawl"
+    db = couchDB[dbname]
+    db_sentiments = db.view("Suburbs/sentiments", group=True, group_level=2)
+    ret = {}
+    for item in db_sentiments:
+        # print(item.key, item.value)
+        location = item.key[0]
+        sentiment = item.key[1]
+        count = item.value
+        if ret.get(location) is None:
+            ret[location] = {1: 0, -1: 0, 0: 0}
+        ret[location][sentiment] = count
+
+    return HttpResponse(json.dumps(ret))
+
+
 def get_hashtags(request):
     global API_KEY
     api_key = request.headers.get("X-API-KEY")

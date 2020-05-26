@@ -62,16 +62,14 @@
                                 </select>
                                 <a>VS.</a>
                                 <select id="Type2" onchange="changeType()">
-                                    <option value="total_unemployed">Total unemployed</option>
-                                    <option value="non-school_qualification" selected>Non-school qulification</option>
-                                    <option value="death_number">Death number</option>
-                                    <option value="medical_expense">Medical expense</option>
-                                    <option value="imcome_support_percentage">Income support percentage</option>
+                                    <option value="1">Positive twitter</option>
+                                    <option value="0" selected>Indifferent twitter</option>
+                                    <option value="-1">Negative twitter</option>
                                 </select>
                             </a>
                         </div>
                         <div class="chart-wrapper" style="width: 100%; overflow-x: auto;overflow-y:auto">
-                            <div class="chart-div" style="width: 30000px; height: 250px">
+                            <div class="chart-div" style="width: 15000px; height: 350px">
                                     <canvas id="barchart" width="0" height="100%"></canvas>
                             </div>
                         </div>
