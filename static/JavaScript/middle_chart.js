@@ -3,7 +3,7 @@ var num;
 var index;
 var color_list = ["#800000", "#6699ff", "#ff9999", "#ff751a", "#ffc299", "#cccc00", "#ffff99"]
 var currentSuburb = totalSuburbs();
-
+var myLineChart;
 
 function totalSuburbs(){
     var suburbs = [];
@@ -14,11 +14,11 @@ function totalSuburbs(){
 }
 
 function createData(num, index){
-    var label = currentSuburb[10*num+index];
+    var label = currentSuburb[5*num+index];
     var data = [];
     var i;
     for (i in average_sentiments){
-        console.log(i)
+        // console.log(i)
         data.push(average_sentiments[i][label]);
     }
     var backgroundColor = color_list[index];
@@ -108,11 +108,115 @@ var config = {
     }
 }
 
+function addOptions(){
+    var i;
+
+    var select = document.getElementById("suburb_select");
+    for (i=0; i * 5 < currentSuburb.length; i++){
+        var option = document.createElement("option");
+        option.value = i;
+        var text = "";
+        for (var j = 0; j < 5; j++){
+            text+=currentSuburb[i*5+j]+", ";
+        }
+        option.text = currentSuburb.slice(i*5, i*5+5);
+        select.append(option)
+    }
+}
+
 function showLine(data){
+    if (myLineChart){
+        myLineChart.destroy();
+    }
     var chart = document.getElementById("linechart").getContext("2d");
-    var myLineChart = new Chart(chart,data);
+    myLineChart = new Chart(chart,data);
 }
 
 
+function recreateData(){
+    var selected = document.getElementById("suburb_select").value;
+    var datasets = [];
+    for (var i = 0; i < 5; i++){
+        datasets.push(createData(selected, i));
+    }
+    var new_config = {
+        type: "line",
+        data: {
+            labels: ["2014","2015","2016","2017", "2018"],
+            datasets: [
+                {
+                    label: datasets[1].label,
+                    data: datasets[1].data,
+                    backgroundColor: datasets[1].backgroundColor,
+                    borderColor: datasets[1].borderColor,
+                    borderWidth: 5,
+                    fill: false
+                },{
+                    label: datasets[2].label,
+                    data: datasets[2].data,
+                    backgroundColor: datasets[2].backgroundColor,
+                    borderColor: datasets[2].borderColor,
+                    borderWidth: 5,
+                    fill: false
+                },{
+                    label: datasets[3].label,
+                    data: datasets[3].data,
+                    backgroundColor: datasets[3].backgroundColor,
+                    borderColor: datasets[3].borderColor,
+                    borderWidth: 5,
+                    fill: false
+                },{
+                    label: datasets[4].label,
+                    data: datasets[4].data,
+                    backgroundColor: datasets[4].backgroundColor,
+                    borderColor: datasets[4].borderColor,
+                    borderWidth: 5,
+                    fill: false
+                },{
+                    label: datasets[0].label,
+                    data: datasets[0].data,
+                    backgroundColor: datasets[0].backgroundColor,
+                    borderColor: datasets[0].borderColor,
+                    borderWidth: 5,
+                    fill:false
+                }
+            ],
+            labels: [2014,2015,2016,2017,2018],
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Chart.js Line Chart'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Year'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        }
+    }
+    showLine(new_config);
+}
 
+addOptions();
 showLine(config);
