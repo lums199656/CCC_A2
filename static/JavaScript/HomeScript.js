@@ -1,3 +1,7 @@
+// {#Author: Zhe Wang#}
+// {#ID: 1064919#}
+// {#Team 32#}
+
 //python3 manage.py runserver 8001 --insecure
 function displayName(){
     if(document.getElementById("hidename").style.display=="none")

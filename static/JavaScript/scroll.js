@@ -1,3 +1,7 @@
+// {#Author: Zhe Wang#}
+// {#ID: 1064919#}
+// {#Team 32#}
+
 const intro = document.querySelector(".intro");
 const video = intro.querySelector("video");
 const text = intro.querySelector("h1");

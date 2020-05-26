@@ -1,3 +1,7 @@
+// {#Author: Kailun Huang#}
+// {#ID: 828808#}
+// {#Team 32#}
+
 var suburb = [];
 var type1 = [];
 var type2 = [];
@@ -78,15 +82,15 @@ function extract_unemployment_data_Bar(responseText, num, statistics1, statistic
         datasets: [{
             label: statistics1,
             data: type1,
-            backgroundColor: "#ecc6c6",
-            borderColor: "#ecc6c6",
+            backgroundColor: "#6a4b86",
+            borderColor: "#6a4b86",
             borderWidth: 1,
             // yAxisID: statistics1
         },{
             label: statistics2,
             data: type2,
-            backgroundColor: "#ff4d4d",
-            borderColor: "#ff4d4d",
+            backgroundColor: "#6699ff",
+            borderColor: "#6699ff",
             borderWidth: 1,
             // yAxisID: statistics2
         }],

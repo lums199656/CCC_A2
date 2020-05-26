@@ -1,3 +1,7 @@
+// {#Author: Zhe Wang#}
+// {#ID: 1064919#}
+// {#Team 32#}
+
 var auspol = {
     "THOMASTOWN": {
         "2014": {

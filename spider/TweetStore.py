@@ -1,3 +1,7 @@
+# Author: Zisheng Cheng
+# ID : 1105176
+# Team : 32
+
 import couchdb
 import couchdb.design
 

@@ -1,3 +1,7 @@
+# Author: Minshen Lu
+# ID : 1039243
+# Team : 32
+
 import json
 from textblob import TextBlob
 from mpi4py import MPI

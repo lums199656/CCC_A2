@@ -1,3 +1,7 @@
+// {#Author: Zhe Wang#}
+// {#ID: 1064919#}
+// {#Team 32#}
+
 // function page(){
 //    $.ajax({
 //        url: "go_to_chart/",

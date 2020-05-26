@@ -241,12 +241,12 @@ body {
 }
 
 #Type1,#Type3{
-    background-color:#b07599;
-    border-color: #b07599;
+    background-color: #ecc6c6;
+    border-color: #ecc6c6;
 }
 
 #Type2,#year_select{
-    background-color: #2d2764;
-    border-color: #2d2764;
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
 }
 
