@@ -93,13 +93,13 @@ CAdvisor/
 
 ### Server3: 115.146.93.145
 
-CouchDB/
-Frontend/
-Nginx/
-Django/
-CAdvisor/
-Spider/ 
-CAdvisor/
+  CouchDB/
+  Frontend/
+  Nginx/
+  Django/
+  CAdvisor/
+  Spider/ 
+  CAdvisor/
 
 ### Server4: 115.146.95.10
 
