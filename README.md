@@ -16,7 +16,7 @@ https://youtu.be/RW0KPW1tAsA
 
 ### Frontend presentation
 
-xxx
+https://www.youtube.com/watch?v=tHRdKatbs8s
 
 ### PPT
 
