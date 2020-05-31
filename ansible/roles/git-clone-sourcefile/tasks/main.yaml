@@ -1,0 +1,7 @@
+---
+- name: pull latest code from git
+  git:
+    repo: https://github.com/lums199656/CCC_A2.git
+    update: yes
+    dest: '{{ remote_working_directory }}'
+    force: yes

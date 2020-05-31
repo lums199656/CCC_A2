@@ -1,0 +1,85 @@
+---
+#############################################
+#              Common vars                  #
+#############################################
+availability_zone: melbourne-qh2-uom
+instance_network: qh2-uom
+instance_flavor: uom.mse.2c9g
+instance_image: 45225edb-66d8-4fd0-bf41-132a31a18166 # Ubuntu 18.04
+instance_key_name: CCC_A2_key # ssh private key
+project_working_directory: /Users/luminshen/Desktop/project
+
+#############################################
+#             Security group                #
+#############################################
+security_groups:
+  - name: security-group-1
+    description: "security group for instance2 server"
+    rules:
+      - name: 'Any'
+        protocol: tcp
+        port_range_min: 1
+        port_range_max: 65535
+        remote_ip_prefix: 0.0.0.0/0
+  - name: security-group-2
+    description: "security group for instance3 server"
+    rules:
+      - name: 'Any'
+        protocol: tcp
+        port_range_min: 1
+        port_range_max: 65535
+        remote_ip_prefix: 0.0.0.0/0
+  - name: security-group-3
+    description: "security group for instance4 server"
+    rules:
+      - name: 'Any'
+        protocol: tcp
+        port_range_min: 1
+        port_range_max: 65535
+        remote_ip_prefix: 0.0.0.0/0
+  - name: security-group-4
+    description: "security group for instance1 server"
+    rules:
+      - name: 'Any'
+        protocol: tcp
+        port_range_min: 1
+        port_range_max: 65535
+        remote_ip_prefix: 0.0.0.0/0
+
+
+#############################################
+#                Instance                   #
+#############################################
+instances:
+  - name: instance-1
+    security_groups: security-group-1
+    volume_ids: '{{ instance1_volumes|default([]) }}'
+    volumes:
+      - vol_name: volume-1
+        vol_size: 5
+        device: /dev/vdb
+        mountpoint: /data
+  - name: instance-2
+    security_groups: security-group-2
+    volume_ids: '{{ instance2_volumes|default([]) }}'
+    volumes:
+      - vol_name: volume-2
+        vol_size: 5
+        device: /dev/vdb
+        mountpoint: /data
+  - name: instance-3
+    security_groups: security-group-3
+    volume_ids: '{{ instance3_volumes|default([]) }}'
+    volumes:
+      - vol_name: volume-3
+        vol_size: 5
+        device: /dev/vdb
+        mountpoint: /data
+  - name: instance-4
+    security_groups: security-group-4
+    volume_ids: '{{ instance4_volumes|default([]) }}'
+    volumes:
+      - vol_name: volume-4
+        vol_size: 100
+        device: /dev/vdb
+        mountpoint: /data
